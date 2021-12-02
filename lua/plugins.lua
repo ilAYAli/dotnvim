@@ -117,11 +117,11 @@ require('packer').startup(function()
 
 
   -- local:
-  use '~/dot/nvim/mine/plugins/start'
-  use '~/dot/nvim/mine/plugins/highlight'
-  use '~/dot/nvim/mine/plugins/pastetoggle'
-  use '~/dot/nvim/mine/plugins/namespace'
-  use '~/dot/nvim/mine/plugins/gblame'
+  use '~/.config/nvim/mine/plugins/start'
+  use '~/.config/nvim/mine/plugins/highlight'
+  use '~/.config/nvim/mine/plugins/pastetoggle'
+  use '~/.config/nvim/mine/plugins/namespace'
+  use '~/.config/nvim/mine/plugins/gblame'
   -- use '~/dot/nvim/mine/plugins/mru'
 
 
