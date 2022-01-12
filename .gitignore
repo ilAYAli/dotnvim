@@ -1,0 +1,12 @@
+.cache/
+colors/
+ftplugin/
+initlsp.vim
+lua/packer/
+packer
+plugin/
+sessions/
+spell/
+view/
+vimrc_minimal
+mine
