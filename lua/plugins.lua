@@ -14,7 +14,11 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- lsp:
-  use 'https://github.com/neovim/nvim-lspconfig.git'
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
+
 
   -- telescope extensions:
   use {
@@ -121,9 +125,6 @@ require('packer').startup(function()
   use '~/.config/nvim/mine/plugins/highlight'
   use '~/.config/nvim/mine/plugins/pastetoggle'
   use '~/.config/nvim/mine/plugins/namespace'
-  use '~/.config/nvim/mine/plugins/gblame'
-  -- use '~/dot/nvim/mine/plugins/mru'
-
 
   --[ dev ]-------------------------------------------------------------------
 
@@ -174,7 +175,6 @@ require('packer').startup(function()
   use {
     "ray-x/lsp_signature.nvim",
   }
-
   use {
     'sindrets/diffview.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
@@ -197,7 +197,6 @@ require('packer').startup(function()
   --[ theme ]-----------------------------------------------------------------
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
-  use 'https://github.com/theniceboy/nvim-deus.git'
   use 'https://github.com/cormacrelf/vim-colors-github.git'    -- light theme
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
   use 'norcalli/nvim-colorizer.lua'
@@ -212,10 +211,16 @@ require('telescope').setup{
 }
 
 -- lsp:
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['clangd'].setup {
-  capabilities = capabilities
-}
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    server:setup(opts)
+end)
+
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- require('lspconfig')['clangd'].setup {
+--   capabilities = capabilities
+-- }
 
 
 require "lsp_signature".setup({
