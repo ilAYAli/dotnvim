@@ -150,11 +150,14 @@ require('packer').startup(function()
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
-  use 'ggandor/lightspeed.nvim'
+  --use {
+  --  'ggandor/lightspeed.nvim',
+  --  jump_to_unique_chars = false,
+  --  safe_labels = {}
+  --}
   use 'tpope/vim-fugitive'
   use 'skywind3000/asyncrun.vim'
   use {
@@ -174,10 +177,7 @@ require('packer').startup(function()
       require('gitsigns').setup()
     end
   }
-
-  use {
-    "ray-x/lsp_signature.nvim",
-  }
+  -- use 'ray-x/lsp_signature.nvim'
   use {
     'sindrets/diffview.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
@@ -185,7 +185,6 @@ require('packer').startup(function()
 
   use 'nvim-lualine/lualine.nvim'
   use 'mhinz/vim-signify'
-  -- use { "ray-x/lsp_signature.nvim", }
   -- use 'https://github.com/w0rp/ale.git'
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
@@ -200,7 +199,6 @@ require('packer').startup(function()
   --[ theme ]-----------------------------------------------------------------
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
-  use 'https://github.com/theniceboy/nvim-deus.git'
   use 'https://github.com/cormacrelf/vim-colors-github.git'    -- light theme
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
   use 'norcalli/nvim-colorizer.lua'
@@ -215,19 +213,25 @@ require('telescope').setup{
 }
 
 -- lsp:
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['clangd'].setup {
-  capabilities = capabilities
-}
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    server:setup(opts)
+end)
+
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- require('lspconfig')['clangd'].setup {
+--   capabilities = capabilities
+-- }
 
 
-require "lsp_signature".setup({
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
-  handler_opts = {
-    border = "single"
-  }
-})
-
+--require "lsp_signature".setup({
+--  bind = true, -- This is mandatory, otherwise border config won't get registered.
+--  handler_opts = {
+--    border = "single",
+--  }
+--})
+--
 --local lspkind = require('lspkind')
 local cmp = require('cmp')
 cmp.setup {
@@ -303,8 +307,6 @@ require('lualine').setup{
     }
   }
 }
-
-require'hop'.setup()
 
 require("nvim-treesitter.configs").setup {
   highlight = {

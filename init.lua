@@ -16,6 +16,7 @@ vim.api.nvim_exec([[
     autocmd BufWritePost plugins.lua PackerCompile
 
     autocmd BufReadPost *.log :call highlight#enable()
+    "autocmd BufReadPost *.log :call Noprefix()
 
     " lsp:
     "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
