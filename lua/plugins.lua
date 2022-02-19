@@ -209,6 +209,12 @@ end)
 require('telescope').setup{
   defaults = {
     layout_strategy = "vertical",
+    vimgrep_arguments = {
+      'git',
+      'grep',
+      '--color=never',
+      '--column',
+    }
   }
 }
 
