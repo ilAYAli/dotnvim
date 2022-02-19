@@ -41,6 +41,7 @@ require('packer').startup(function()
     config = function()
       require('telescope').setup {
         defaults = {
+          vimgrep_arguments = { 'git', 'grep', '--color=never', '--columns' },
           layout_config = {
             vertical = {
               width=0.99,
