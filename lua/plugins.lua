@@ -292,9 +292,11 @@ cmp.setup.cmdline(':', {
 })
 
 -- lualine
+custom_nord = require'lualine.themes.nord'
+custom_nord.normal.c.bg = '#112233'
 require('lualine').setup{
   options = {
-    theme = 'nord'
+    theme = custom_nord
   },
   sections = {
     lualine_c = {
