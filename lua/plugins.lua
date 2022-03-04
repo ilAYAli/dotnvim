@@ -16,7 +16,6 @@ require('packer').startup(function()
   -- lsp:
   use {
     'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
   }
 
 
@@ -40,19 +39,19 @@ require('packer').startup(function()
     },
     config = function()
       require('telescope').setup {
-        defaults = {
-          vimgrep_arguments = { 'git', 'grep', '--color=never', '--columns' },
-          layout_config = {
-            vertical = {
-              width=0.99,
-              height=0.99
-            },
-            horizontal = {
-              width=0.99,
-              height=0.99
-            }
-          }
-        },
+        --defaults = {
+        --  -- vimgrep_arguments = { 'git', 'grep', '--color=never', '--columns' },
+        --  layout_config = {
+        --    vertical = {
+        --      width=0.99,
+        --      height=0.99
+        --    },
+        --    horizontal = {
+        --      width=0.99,
+        --      height=0.99
+        --    }
+        --  }
+        --},
         opts = {
           show_untracked = false,
           ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
@@ -173,9 +172,7 @@ require('packer').startup(function()
     end
   }
 
-  use {
-    "ray-x/lsp_signature.nvim",
-  }
+  -- use { "ray-x/lsp_signature.nvim", }
   use {
     'sindrets/diffview.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
@@ -212,24 +209,12 @@ require('telescope').setup{
 }
 
 -- lsp:
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-    server:setup(opts)
-end)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- require('lspconfig')['clangd'].setup {
---   capabilities = capabilities
--- }
-
-
-require "lsp_signature".setup({
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
-  handler_opts = {
-    border = "single"
-  }
-})
+require'lspconfig'.clangd.setup {
+  capabilities = capabilities,
+}
 
 --local lspkind = require('lspkind')
 local cmp = require('cmp')
