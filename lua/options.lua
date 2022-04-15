@@ -37,8 +37,10 @@ if require'utils'.is_darwin() then
   }
 end
 
+vim.opt.laststatus      = 3
 vim.opt.syntax          = "on"
 vim.opt.termguicolors   = true
+--vim.opt.clipboard       = 'unnamedplus'
 vim.opt.mouse           = "a"
 vim.opt.scroll          = 1
 vim.opt.scrolloff       = 15
@@ -48,7 +50,7 @@ vim.opt.cinoptions      = "l1,g0,N-s,(0,(0,W4u2"
 vim.opt.hidden          = true
 vim.opt.foldenable      = false
 vim.opt.lazyredraw      = true
-vim.opt.diffopt         = "filler,internal,algorithm:histogram,indent-heuristic"
+vim.opt.diffopt         = "internal,hiddenoff,algorithm:patience"
 vim.opt.inccommand      = "nosplit"
 vim.opt.splitbelow      = true
 vim.opt.backspace       = "indent,eol,start"
@@ -100,7 +102,8 @@ vim.opt.backupdir       = vim.env.HOME .. "/.cache/"
 vim.opt.undodir         = vim.env.HOME .. "/.cache/"
 
 --[ b&w:
-vim.opt.number          = true
+vim.opt.number          = false
 vim.opt.cursorline      = true
+vim.opt.foldenable      = false
 
 vim.g.asyncrun_open     = 1

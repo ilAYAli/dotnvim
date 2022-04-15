@@ -16,6 +16,7 @@ require('packer').startup(function()
   -- lsp:
   use {
     'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
   }
 
 
@@ -39,19 +40,18 @@ require('packer').startup(function()
     },
     config = function()
       require('telescope').setup {
-        --defaults = {
-        --  -- vimgrep_arguments = { 'git', 'grep', '--color=never', '--columns' },
-        --  layout_config = {
-        --    vertical = {
-        --      width=0.99,
-        --      height=0.99
-        --    },
-        --    horizontal = {
-        --      width=0.99,
-        --      height=0.99
-        --    }
-        --  }
-        --},
+        defaults = {
+          layout_config = {
+            vertical = {
+              width=0.99,
+              height=0.99
+            },
+            horizontal = {
+              width=0.99,
+              height=0.99
+            }
+          }
+        },
         opts = {
           show_untracked = false,
           ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
@@ -125,6 +125,9 @@ require('packer').startup(function()
   use '~/.config/nvim/mine/plugins/highlight'
   use '~/.config/nvim/mine/plugins/pastetoggle'
   use '~/.config/nvim/mine/plugins/namespace'
+  -- use '~/.config/nvim/mine/plugins/gblame'
+  -- use '~/.config/nvim/mine/plugins/mru'
+
 
   --[ dev ]-------------------------------------------------------------------
 
@@ -154,13 +157,14 @@ require('packer').startup(function()
   use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
   use 'skywind3000/asyncrun.vim'
-  use {
-    'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('neogit').setup()
-    end
-  }
+
+  -- use {
+  --   'TimUntersberger/neogit',
+  --   requires = 'nvim-lua/plenary.nvim',
+  --   config = function()
+  --     require('neogit').setup()
+  --   end
+  -- }
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -172,7 +176,9 @@ require('packer').startup(function()
     end
   }
 
-  -- use { "ray-x/lsp_signature.nvim", }
+  use {
+    "ray-x/lsp_signature.nvim",
+  }
   use {
     'sindrets/diffview.nvim',
     requires = 'kyazdani42/nvim-web-devicons'
@@ -195,6 +201,7 @@ require('packer').startup(function()
   --[ theme ]-----------------------------------------------------------------
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
+  use 'https://github.com/theniceboy/nvim-deus.git'
   use 'https://github.com/cormacrelf/vim-colors-github.git'    -- light theme
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
   use 'norcalli/nvim-colorizer.lua'
@@ -209,11 +216,24 @@ require('telescope').setup{
 }
 
 -- lsp:
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local clangd_cmd = {
+  "clangd",
+  "--background-index",
+  "-j=12",
+  "--clang-tidy",
+  "--clang-tidy-checks=*",
+  "--all-scopes-completion",
+  "--cross-file-rename",
+  "--completion-style=detailed",
+  "--header-insertion-decorators",
+  "--header-insertion=iwyu",
+  "--pch-storage=memory",
+}
 
-require'lspconfig'.clangd.setup {
-  capabilities = capabilities,
+require('lspconfig')['clangd'].setup {
+  cmd = cmd,
+  capabilities = capabilities
 }
 
 --local lspkind = require('lspkind')
@@ -277,11 +297,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- lualine
-custom_nord = require'lualine.themes.nord'
-custom_nord.normal.c.bg = '#112233'
 require('lualine').setup{
   options = {
-    theme = custom_nord
+    theme = 'nord'
   },
   sections = {
     lualine_c = {
