@@ -29,10 +29,9 @@ nmap, normal mode:
 
 local opts = { noremap=true, silent=true }
 -- function keys:
-vim.api.nvim_set_keymap('n', '<F1>',    "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", opts)
-vim.api.nvim_set_keymap('i', '<F1>',    "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", opts)
-vim.api.nvim_set_keymap('n', '<F2>',    "<Cmd>Telescope oldfiles<CR>", opts)
-vim.api.nvim_set_keymap('n', '<c-z>',    "<Cmd>Telescope oldfiles<CR>", opts)
+vim.api.nvim_set_keymap('n', '<F1>',    "<Cmd>Telescope oldfiles<CR>", opts)
+vim.api.nvim_set_keymap('n', '<c-z>',   "<Cmd>Mru<CR>", opts)
+vim.api.nvim_set_keymap('n', '<c-x>',   "<Cmd>Mfu<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F3>',    "<Cmd>lua require('telescope.builtin').git_files({show_untracked = false})<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F4>',    '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '>>',    ':lua require("telescope.builtin").lsp_workspace_symbols({query=vim.fn.expand("<cword>")})<CR>', opts)
@@ -51,7 +50,6 @@ vim.api.nvim_set_keymap('n', 'K',         '<Cmd>lua vim.lsp.buf.hover()<CR>', op
 vim.api.nvim_set_keymap('n', 's',         '<cmd>HopWord<CR>', opts)
 
 -- vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<c-x>', "<Cmd>Telescope oldfiles cwd_only=true alternate=git_files<CR>", opts)
 
 -- misc:
 vim.api.nvim_set_keymap('n', 'ZZ', ':wqa!<CR>', opts)

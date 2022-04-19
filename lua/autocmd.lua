@@ -25,12 +25,9 @@ api.nvim_create_autocmd("BufReadPost", {
   command = [[call setpos(".", getpos("'\""))]],
   group = my_au,
 })
-api.nvim_create_autocmd("BufReadPost", {
-  command = "call highlight#enable()",
-  group = my_au,
-})
 api.nvim_create_autocmd("BufWritePost", {
-  command = "plugins.lua PackerCompile",
+  pattern = "plugins.lua",
+  command = "PackerCompile",
   group = my_au,
 })
 

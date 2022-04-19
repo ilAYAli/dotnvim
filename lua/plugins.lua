@@ -19,18 +19,6 @@ require('packer').startup(function()
     'williamboman/nvim-lsp-installer',
   }
 
-
-  -- telescope extensions:
-  use {
-    "nvim-telescope/telescope-frecency.nvim",
-    requires = {
-      "tami5/sql.nvim"
-    },
-    config = function()
-      require"telescope".load_extension("frecency")
-    end
-  }
-
   -- telescope:
   use {
     'nvim-telescope/telescope.nvim',
@@ -55,18 +43,6 @@ require('packer').startup(function()
         opts = {
           show_untracked = false,
           ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
-        },
-        extensions = {
-          frecency = {
-            show_scores = false,
-            show_unindexed = true,
-            ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
-            workspaces = {
-              ["ce"]      =  (HOME.."/source/ce-main"),
-              ["nvim"]    =  (HOME.."/.config/nvim"),
-              ["cwd"]     =  (CWD)
-            }
-          }
         },
       }
     end
@@ -125,8 +101,8 @@ require('packer').startup(function()
   use '~/.config/nvim/mine/plugins/highlight'
   use '~/.config/nvim/mine/plugins/pastetoggle'
   use '~/.config/nvim/mine/plugins/namespace'
+  use '~/.config/nvim/mine/plugins/mru'
   -- use '~/.config/nvim/mine/plugins/gblame'
-  -- use '~/.config/nvim/mine/plugins/mru'
 
 
   --[ dev ]-------------------------------------------------------------------
@@ -143,6 +119,8 @@ require('packer').startup(function()
 
     }
   }
+
+  use 'https://github.com/bfredl/nvim-luadev.git'
 
   use 'p00f/nvim-ts-rainbow'
 
@@ -235,6 +213,32 @@ require('lspconfig')['clangd'].setup {
   cmd = cmd,
   capabilities = capabilities
 }
+
+-- sumneko lua lsp
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+require'lspconfig'.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 
 --local lspkind = require('lspkind')
 local cmp = require('cmp')
