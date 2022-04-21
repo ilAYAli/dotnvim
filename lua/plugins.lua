@@ -101,11 +101,11 @@ require('packer').startup(function()
   use '~/.config/nvim/mine/plugins/highlight'
   use '~/.config/nvim/mine/plugins/pastetoggle'
   use '~/.config/nvim/mine/plugins/namespace'
-  use '~/.config/nvim/mine/plugins/mru'
   -- use '~/.config/nvim/mine/plugins/gblame'
 
 
   --[ dev ]-------------------------------------------------------------------
+  use 'ilAYAli/scMRU.nvim'
 
   use {
     'hrsh7th/nvim-cmp',

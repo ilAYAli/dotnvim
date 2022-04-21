@@ -31,7 +31,7 @@ local opts = { noremap=true, silent=true }
 -- function keys:
 vim.api.nvim_set_keymap('n', '<F1>',    "<Cmd>Telescope oldfiles<CR>", opts)
 vim.api.nvim_set_keymap('n', '<c-z>',   "<Cmd>Mru<CR>", opts)
-vim.api.nvim_set_keymap('n', '<c-x>',   "<Cmd>Mfu<CR>", opts)
+vim.api.nvim_set_keymap('n', '<c-x>',   "<Cmd>MruRepos<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F3>',    "<Cmd>lua require('telescope.builtin').git_files({show_untracked = false})<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F4>',    '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '>>',    ':lua require("telescope.builtin").lsp_workspace_symbols({query=vim.fn.expand("<cword>")})<CR>', opts)
