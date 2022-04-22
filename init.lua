@@ -1,5 +1,4 @@
 vim.g.mapleader = ","
-vim.fn.mkdir(vim.env.HOME .. '/.cache/', 'p')
 
 vim.cmd("runtime! mine/functions/**/*.vim")
 
