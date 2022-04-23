@@ -40,7 +40,6 @@ end
 vim.opt.laststatus      = 3
 vim.opt.syntax          = "on"
 vim.opt.termguicolors   = true
---vim.opt.clipboard       = 'unnamedplus'
 vim.opt.mouse           = "a"
 vim.opt.scroll          = 1
 vim.opt.scrolloff       = 15
