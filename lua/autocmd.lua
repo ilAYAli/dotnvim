@@ -1,35 +1,29 @@
 
-local api = vim.api
-local my_au = api.nvim_create_augroup("my_au", { clear = true })
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-api.nvim_create_autocmd("BufWritePost", {
-    group = my_au,
-    pattern = "plugins.lua",
-    command = "PackerCompile",
-})
+local my_au = augroup("my_au", { clear = true })
 
-api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
     group = my_au,
     pattern = "*.log",
-    command = "call highlight#enable()",
+    callback = function()
+        vim.call('highlight#toggle')
+    end
 })
 
-api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
     group = my_au,
     pattern = "*",
-    command = [[call setpos(".", getpos("'\""))]],
+    callback = function()
+        vim.fn.setpos(".", vim.fn.getpos("'\""))
+    end
 })
-api.nvim_create_autocmd("BufWritePost", {
+
+autocmd("BufWritePost", {
     group = my_au,
     pattern = "plugins.lua",
-    command = "PackerCompile",
+    callback = function()
+        vim.call("PackerCompile")
+    end
 })
-
--- api.nvim_create_autocmd("CursorHold", {
---     group = my_au,
---     pattern = "*",
---     callback = function()
---         vim.lsp.buf.hover()
---     end
--- })
-
