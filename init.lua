@@ -6,7 +6,7 @@ vim.cmd("runtime! mine/functions/**/*.vim")
 
 require'plugins'
 require'options'
-require'maps'
+require'keymaps'
 require'theme'
 require'utils'
 require'autocmd'
