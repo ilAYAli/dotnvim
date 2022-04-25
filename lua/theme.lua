@@ -1,41 +1,34 @@
 ---[ let: global ]--------------------------------------------------------------
-function _G.set_theme()
-  if vim.env['ITERM_PROFILE'] == "Light" then
-    vim.o.background = "light"
-    vim.cmd("colorscheme github")
+local M = {}
 
-    vim.cmd("highlight SignColumn guibg=#eeeeee guifg=#000000")
-    vim.cmd("highlight CursorLine guibg=#ddddee guifg=none")
-    vim.cmd("highlight Visual ctermfg=none guifg=none ctermbg=3, guibg=#eacb8a")
-  else
-    vim.cmd("colorscheme nvcode")
-    vim.cmd("colorscheme nord")
-    vim.cmd("hi Normal      guibg=#151515")
-    vim.cmd("hi TSComment   guibg=#111111 guifg=#777777")
-    vim.cmd("highlight DiagnosticError guifg=#807070")
-    --
-    -- [ diff ]-----------------------------------------------------------------
-    -- vim.cmd("hi DiffChange  guifg=#1e1e1e guibg=#aaaa22 gui=NONE")
-    -- vim.cmd("hi DiffAdd     guifg=#1e1e1e guibg=#608b4e gui=NONE")
-    -- vim.cmd("hi DiffDelete  guifg=#1e1e1e guibg=#aa2222 gui=NONE")
+function M.set_theme()
+    if vim.env['ITERM_PROFILE'] == "Light" then
+        vim.o.background = "light"
+        vim.cmd("colorscheme github")
 
-    ---[ misc ]-----------------------------------------------------------------
-    vim.cmd("hi Pmenu       guibg=#222244")
-    vim.cmd("hi PmenuSel    guifg=#000000 guibg=#aaaaaa")
-    vim.cmd("hi SignColumn  guibg=#151515")
-  end
+        vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#eeeeee", fg = "000000" })
+        vim.api.nvim_set_hl(0, 'CursorLine',        { bg = "#ddddee" })
+        vim.api.nvim_set_hl(0, 'Visual',            { bg = "#eacb8a" })
+    else
+        -- vim.cmd("colorscheme nvcode")
+        vim.cmd("colorscheme nord")
 
-  vim.cmd("hi ExtraWhitespace ctermbg=red guibg=red")
-  vim.cmd("match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
+        vim.api.nvim_set_hl(0, 'Normal',            { bg = "#151515" })
+        vim.cmd("hi Normal      guibg=#151515") -- wtf!
+        vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
+        vim.api.nvim_set_hl(0, 'DiagnosticError',   { fg = "#807070" })
+        vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
+        vim.api.nvim_set_hl(0, 'PmenuSel',          { bg = "#aaaaaa", fg = "#000000" })
+        vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
+
+        -- [ diff ]-----------------------------------------------------------------
+        --vim.api.nvim_set_hl(0, 'DiffChange',        { bg = "=#aaaa22", fg = "#1e1e1e" })
+        --vim.api.nvim_set_hl(0, 'DiffAdd',           { bg = "=#608b4e", fg = "#1e1e1e" })
+        --vim.api.nvim_set_hl(0, 'DiffDelete',        { bg = "=#aa2222", fg = "#1e1e1e" })
+    end
+
+    vim.api.nvim_set_hl(0, 'ExtraWhitespace',       { bg = "#ff0000" })
+    vim.cmd("match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 end
 
-local function init()
-  vim.api.nvim_exec([[
-  augroup pwa_theme
-  autocmd ColorScheme * lua set_theme()
-  augroup END
-  ]], false)
-  _G.set_theme()
-end
-
-init()
+return M
