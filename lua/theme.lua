@@ -22,9 +22,11 @@ function M.set_theme()
         vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
 
         -- [ diff ]-----------------------------------------------------------------
-        --vim.api.nvim_set_hl(0, 'DiffChange',        { bg = "=#aaaa22", fg = "#1e1e1e" })
-        --vim.api.nvim_set_hl(0, 'DiffAdd',           { bg = "=#608b4e", fg = "#1e1e1e" })
-        --vim.api.nvim_set_hl(0, 'DiffDelete',        { bg = "=#aa2222", fg = "#1e1e1e" })
+        vim.api.nvim_set_hl(0, 'DiffAdd',           { bg = "#285d16", fg = "#dde7ea" })
+        vim.api.nvim_set_hl(0, 'DiffDelete',        { bg = "#600000", fg = "#dde7ea" })
+        vim.api.nvim_set_hl(0, 'DiffText',          { bg = "#ab6606", fg = "#dde7ea" })
+        --vim.api.nvim_set_hl(0, 'DiffChange',        { bg = "#403000" })
+        vim.api.nvim_set_hl(0, 'DiffChange',        { bg = "#000000" })
     end
 
     vim.api.nvim_set_hl(0, 'ExtraWhitespace',       { bg = "#ff0000" })
