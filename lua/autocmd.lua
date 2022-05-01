@@ -14,7 +14,7 @@ autocmd("BufReadPost", {
     group = my_au,
     pattern = "*.log",
     callback = function()
-        vim.call('highlight#toggle')
+        vim.fn['highlight#toggle']()
     end
 })
 
@@ -30,7 +30,16 @@ autocmd("BufWritePost", {
     group = my_au,
     pattern = "plugins.lua",
     callback = function()
-        vim.call("PackerCompile")
+        vim.cmd([[":PackerCompile"]])
     end
 })
 
+autocmd("TextYankPost", {
+    group = my_au,
+    pattern = "*",
+    callback = function()
+        if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+            vim.cmd([[":OSCYankReg"]])
+        end
+    end
+})

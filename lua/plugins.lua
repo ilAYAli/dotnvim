@@ -95,7 +95,6 @@ require('packer').startup(function()
     end
   }
 
-
   -- local:
   use '~/.config/nvim/mine/plugins/start'
   use '~/.config/nvim/mine/plugins/highlight'
@@ -172,7 +171,7 @@ require('packer').startup(function()
   use "onsails/lspkind-nvim"
 
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
-  use 'ojroques/vim-oscyank'                                   -- yank to clipboard over ssh
+  use { 'ojroques/vim-oscyank', branch = main }                -- yank to clipboard over ssh
   use 'https://github.com/urbainvaes/vim-tmux-pilot'           -- c-h/c-l switch term window
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
 
