@@ -9,14 +9,16 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+-- shut up sumneko about unused global 'use':
+local use = require('packer').use
 
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- lsp:
   use {
-    'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
+    'neovim/nvim-lspconfig',
   }
 
   -- telescope:
@@ -135,14 +137,6 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive'
   use 'skywind3000/asyncrun.vim'
 
-  -- use {
-  --   'TimUntersberger/neogit',
-  --   requires = 'nvim-lua/plenary.nvim',
-  --   config = function()
-  --     require('neogit').setup()
-  --   end
-  -- }
-
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -171,15 +165,17 @@ require('packer').startup(function()
   use "onsails/lspkind-nvim"
 
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
-  use { 'ojroques/vim-oscyank', branch = main }                -- yank to clipboard over ssh
+  use { 'ojroques/vim-oscyank', branch = 'main' }                -- yank to clipboard over ssh
   use 'https://github.com/urbainvaes/vim-tmux-pilot'           -- c-h/c-l switch term window
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
 
   --[ theme ]-----------------------------------------------------------------
+  use 'mhartington/oceanic-next'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
   use 'https://github.com/theniceboy/nvim-deus.git'
-  use 'https://github.com/cormacrelf/vim-colors-github.git'    -- light theme
+  use 'projekt0n/github-nvim-theme'
+  --use 'https://github.com/cormacrelf/vim-colors-github.git'    -- light theme
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
   use 'norcalli/nvim-colorizer.lua'
 end)
@@ -193,6 +189,11 @@ require('telescope').setup{
 }
 
 -- lsp:
+
+-- LspInstall: add servers to path:
+require("nvim-lsp-installer").setup {}
+
+--
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local clangd_cmd = {
   "clangd",
@@ -209,7 +210,7 @@ local clangd_cmd = {
 }
 
 require('lspconfig')['clangd'].setup {
-  cmd = cmd,
+  cmd = clangd_cmd,
   capabilities = capabilities
 }
 

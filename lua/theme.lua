@@ -12,9 +12,7 @@ function M.set_theme()
     else
         -- vim.cmd("colorscheme nvcode")
         vim.cmd("colorscheme nord")
-
         vim.api.nvim_set_hl(0, 'Normal',            { bg = "#151515" })
-        vim.cmd("hi Normal      guibg=#151515") -- wtf!
         vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
         vim.api.nvim_set_hl(0, 'DiagnosticError',   { fg = "#807070" })
         vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
