@@ -25,6 +25,19 @@ vim.keymap.set('n', '<F11>', ':MergetoolToggle<CR>')
 vim.keymap.set('n', '<F12>', ':Neogit<CR>')
 
 -- leader:
+--vim.keymap.set('n', 'D', ':lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', '<leader>v', function()
+    if vim.g.vtext_enabled == nil or vim.g.vtext_enabled then
+        vim.g.vtext_enabled = false
+        vim.diagnostic.config({virtual_text = vim.g.vtext_enabled})
+    else
+        vim.g.vtext_enabled = true
+        vim.diagnostic.config({virtual_text = vim.g.vtext_enabled})
+    end
+end)
+-- start disabled:
+vim.api.nvim_feedkeys(",v", "m", true)
+
 vim.keymap.set('n', '<leader>o', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>')
 vim.keymap.set("n", '<leader>b', ':Telescope buffers<CR>')

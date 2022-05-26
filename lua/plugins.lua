@@ -1,8 +1,3 @@
--- print("initializing packets")
-USER = vim.fn.expand('$USER')
-HOME = vim.fn.expand('$HOME')
-CWD  = vim.fn.expand('$PWD')
-
 local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
@@ -19,6 +14,18 @@ require('packer').startup(function()
   use {
     'williamboman/nvim-lsp-installer',
     'neovim/nvim-lspconfig',
+  }
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
 
   -- telescope:
