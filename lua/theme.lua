@@ -12,7 +12,7 @@ function M.set_theme()
     else
         -- vim.cmd("colorscheme nvcode")
         vim.cmd("colorscheme nord")
-        vim.api.nvim_set_hl(0, 'Normal',            { bg = "#151515" })
+        vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
         vim.api.nvim_set_hl(0, 'TelescopeNormal',   { bg = "#151515" })
         vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
         vim.api.nvim_set_hl(0, 'DiagnosticError',   { fg = "#807070" })
@@ -20,7 +20,7 @@ function M.set_theme()
         vim.api.nvim_set_hl(0, 'PmenuSel',          { bg = "#aaaaaa", fg = "#000000" })
         vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
 
-        -- [ diff ]-----------------------------------------------------------------
+        -- -- [ diff ]-----------------------------------------------------------------
         vim.api.nvim_set_hl(0, 'DiffAdd',           { bg = "#285d16", fg = "#dde7ea" })
         vim.api.nvim_set_hl(0, 'DiffDelete',        { bg = "#600000", fg = "#dde7ea" })
         vim.api.nvim_set_hl(0, 'DiffText',          { bg = "#ab6606", fg = "#dde7ea" })
