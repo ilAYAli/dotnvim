@@ -1,16 +1,17 @@
+--[ packer ]--------------------------------------------------------------------
 local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
   vim.cmd [[packadd packer.nvim]]
 end
 
--- shut up sumneko about unused global 'use':
+-- silence sumneko regarding: unused global 'use':
 local use = require('packer').use
 
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
-  --[ telescope ]---------------------------------------------------------------
+--[ telescope ]-----------------------------------------------------------------
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -39,7 +40,7 @@ require('packer').startup(function()
     end
   }
 
-  --[ treesitter ]--------------------------------------------------------------
+--[ treesitter ]----------------------------------------------------------------
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
@@ -74,7 +75,7 @@ require('packer').startup(function()
 
   use 'p00f/nvim-ts-rainbow'
 
-  --[ treesitter plugins ]------------------------------------------------------
+--[ treesitter plugins ]--------------------------------------------------------
   use {
     'nvim-treesitter/nvim-treesitter-refactor',
     requires = {
@@ -88,7 +89,7 @@ require('packer').startup(function()
     }
   }
 
-  --[ cmp ]---------------------------------------------------------------------
+--[ cmp ]-----------------------------------------------------------------------
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -102,7 +103,7 @@ require('packer').startup(function()
     }
   }
 
-  --[ LSP ]---------------------------------------------------------------------
+--[ LSP ]-----------------------------------------------------------------------
   use {
     'williamboman/nvim-lsp-installer',
     'neovim/nvim-lspconfig',
@@ -111,13 +112,13 @@ require('packer').startup(function()
   use "ray-x/lsp_signature.nvim"
   use "onsails/lspkind-nvim"
 
-  --[ local ]-------------------------------------------------------------------
+--[ local ]---------------------------------------------------------------------
   use '~/.config/nvim/mine/plugins/start'
   use '~/.config/nvim/mine/plugins/highlight'
   use '~/.config/nvim/mine/plugins/pastetoggle'
   use '~/.config/nvim/mine/plugins/namespace'
 
-  --[ dev ]-------------------------------------------------------------------
+--[ dev ]---------------------------------------------------------------------
   use 'ilAYAli/scMRU.nvim'
   use 'https://github.com/jose-elias-alvarez/null-ls.nvim.git'
   use 'https://github.com/bfredl/nvim-luadev.git'
@@ -144,7 +145,7 @@ require('packer').startup(function()
   use 'mhinz/vim-signify'
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
-  --[ theme ]-----------------------------------------------------------------
+--[ theme ]-------------------------------------------------------------------
   use 'mhartington/oceanic-next'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
@@ -153,7 +154,7 @@ require('packer').startup(function()
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
   use 'norcalli/nvim-colorizer.lua'
 
-  --[ misc ]------------------------------------------------------------------
+--[ misc ]--------------------------------------------------------------------
   use 'nvim-lualine/lualine.nvim'
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
   use { 'ojroques/vim-oscyank', branch = 'main' }                -- yank to clipboard over ssh
@@ -162,18 +163,20 @@ require('packer').startup(function()
 
 end)
 
-----------------------------------------------------------------------------------------------------
--- SETUP
-----------------------------------------------------------------------------------------------------
 
---[ telescope ]---------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+-- SETUP
+--------------------------------------------------------------------------------
+
+--[ telescope ]-----------------------------------------------------------------
 require('telescope').setup{
   defaults = {
     layout_strategy = "vertical",
   }
 }
 
---[ treesitter ]--------------------------------------------------------------
+--[ treesitter ]----------------------------------------------------------------
 require("nvim-treesitter.configs").setup {
   highlight = {
       -- ...
@@ -318,4 +321,3 @@ require('lualine').setup{
     }
   }
 }
-

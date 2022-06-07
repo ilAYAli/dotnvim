@@ -103,7 +103,7 @@ vim.opt.backupdir       = vim.env.HOME .. "/.cache/"
 vim.opt.undodir         = vim.env.HOME .. "/.cache/"
 
 --[ b&w:
-vim.opt.number          = true
+vim.opt.number          = false
 vim.opt.cursorline      = true
 vim.opt.foldenable      = false
 

@@ -12,17 +12,13 @@ vim.keymap.set('n', '<F1>', function()
     end
 end)
 
-vim.keymap.set('n', '<F2>', ":Telescope oldfiles<CR>")
-vim.keymap.set('n', '<F3>', function()
-    local ts = require('telescope.builtin')
-    ts.git_files({show_untracked = false})
-end)
+vim.keymap.set('n', '<F1>', ":bp<CR>")
+vim.keymap.set('n', '<F2>', ":bn<CR>")
 
-vim.keymap.set('n', '<F4>', ':Telescope lsp_dynamic_workspace_symbols<CR>')
-vim.keymap.set('n', '<F9>', ':call PasteToggle()<CR>')
+vim.keymap.set('n', '<F3>', ':Telescope lsp_dynamic_workspace_symbols<CR>')
+vim.keymap.set('n', '<F4>', ':call PasteToggle()<CR>')
 vim.keymap.set('n', '<F10>', ':call highlight#toggle()<CR>')
-vim.keymap.set('n', '<F11>', ':MergetoolToggle<CR>')
-vim.keymap.set('n', '<F12>', ':Neogit<CR>')
+vim.keymap.set('n', '<F12>', ':MergetoolToggle<CR>')
 
 -- leader:
 --vim.keymap.set('n', 'D', ':lua vim.diagnostic.open_float()<CR>')
@@ -36,7 +32,7 @@ vim.keymap.set('n', '<leader>v', function()
     end
 end)
 -- start disabled:
-vim.api.nvim_feedkeys(",v", "m", true)
+--vim.api.nvim_feedkeys(",v", "m", true)
 
 vim.keymap.set('n', '<leader>o', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>')
