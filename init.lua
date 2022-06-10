@@ -5,6 +5,7 @@ local theme = require'theme'.set_theme()
 require'plugins'
 require'options'
 require'keymaps'
+require'commands'
 require'utils'
 require'autocmd'
 

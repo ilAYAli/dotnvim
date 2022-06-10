@@ -94,7 +94,6 @@ require('packer').startup(function()
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/vim-vsnip',
-      'hrsh7th/vim-vsnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -123,7 +122,7 @@ require('packer').startup(function()
   use 'https://github.com/jose-elias-alvarez/null-ls.nvim.git'
   use 'https://github.com/bfredl/nvim-luadev.git'
 
-  use 'ggandor/lightspeed.nvim'
+  --use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
   use 'skywind3000/asyncrun.vim'
 
@@ -307,17 +306,29 @@ require("null-ls").setup({
 })
 
 --[ misc ]----------------------------------------------------------------------
-require('lualine').setup{
-  options = {
-    theme = 'nord'
-  },
-  sections = {
-    lualine_c = {
-      {
-        'filename',
-        file_status = true, -- displays file status (readonly status, modified status)
-        path = 1 -- 0 = filename, 1 = relative, 2 = absolute
+if vim.fn.has('nvim-0.8') then
+  require('lualine').setup{
+    options = {
+      theme = 'nord'
+    },
+    sections = {
+      lualine_c = {
       }
     }
   }
-}
+else
+  require('lualine').setup{
+    options = {
+      theme = 'nord'
+    },
+    sections = {
+      lualine_c = {
+        {
+          'filename',
+          file_status = true, -- displays file status (readonly status, modified status)
+          path = 1 -- 0 = filename, 1 = relative, 2 = absolute
+        }
+      }
+    }
+  }
+end

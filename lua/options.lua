@@ -37,6 +37,10 @@ if require'utils'.is_darwin() then
   }
 end
 
+if vim.fn.has('nvim-0.8') then
+    vim.o.winbar            = '%=%f%='
+end
+
 vim.opt.laststatus      = 3
 vim.opt.syntax          = "on"
 vim.opt.termguicolors   = true
