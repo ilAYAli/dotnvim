@@ -145,6 +145,7 @@ require('packer').startup(function()
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
 --[ theme ]-------------------------------------------------------------------
+  use 'EdenEast/nightfox.nvim'
   use 'mhartington/oceanic-next'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
@@ -306,13 +307,18 @@ require("null-ls").setup({
 })
 
 --[ misc ]----------------------------------------------------------------------
-if vim.fn.has('nvim-0.8') then
+if vim.fn.has('nvim-0.8') == 1 then
   require('lualine').setup{
     options = {
       theme = 'nord'
     },
     sections = {
       lualine_c = {
+        {
+          'filename',
+          file_status = true, -- displays file status (readonly status, modified status)
+          path = 0 -- 0 = filename, 1 = relative, 2 = absolute
+        }
       }
     }
   }

@@ -37,7 +37,7 @@ if require'utils'.is_darwin() then
   }
 end
 
-if vim.fn.has('nvim-0.8') then
+if vim.fn.has('nvim-0.8') == 1 then
     vim.o.winbar            = '%=%f%='
 end
 
