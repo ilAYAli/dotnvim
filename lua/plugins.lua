@@ -155,10 +155,11 @@ require('packer').startup(function()
   use 'norcalli/nvim-colorizer.lua'
 
 --[ misc ]--------------------------------------------------------------------
-  use 'nvim-lualine/lualine.nvim'
+  --use 'nvim-lualine/lualine.nvim'
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
   use { 'ojroques/vim-oscyank', branch = 'main' }                -- yank to clipboard over ssh
-  use 'https://github.com/urbainvaes/vim-tmux-pilot'           -- c-h/c-l switch term window
+  use 'christoomey/vim-tmux-navigator'
+  use 'vimpostor/vim-tpipeline'
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
 
 end)
@@ -269,11 +270,16 @@ cmp.setup.cmdline(':', {
 --[ LSP ]-----------------------------------------------------------------------
 require("nvim-lsp-installer").setup {}
 
-
-require('lspconfig')['clangd'].setup {
-  cmd = clangd_cmd,
-  capabilities = capabilities
-}
+if string.sub(vim.fn.hostname(), 1, 9) == "Xdbuild29" then
+    require('lspconfig')['ccls'].setup {
+      capabilities = capabilities
+    }
+else
+    require('lspconfig')['clangd'].setup {
+      cmd = clangd_cmd,
+      capabilities = capabilities
+    }
+end
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -307,19 +313,20 @@ require("null-ls").setup({
 })
 
 --[ misc ]----------------------------------------------------------------------
+--[[
 if vim.fn.has('nvim-0.8') == 1 then
   require('lualine').setup{
     options = {
       theme = 'nord'
     },
     sections = {
-      lualine_c = {
-        {
-          'filename',
-          file_status = true, -- displays file status (readonly status, modified status)
-          path = 0 -- 0 = filename, 1 = relative, 2 = absolute
-        }
-      }
+      lualine_a = { },
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {{
+        'filename',
+        file_status = true, -- displays file status (readonly status, modified status)
+        path = 0 -- 0 = filename, 1 = relative, 2 = absolute
+      }},
     }
   }
 else
@@ -338,3 +345,4 @@ else
     }
   }
 end
+--]]

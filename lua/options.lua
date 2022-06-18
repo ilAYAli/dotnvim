@@ -39,6 +39,7 @@ end
 
 if vim.fn.has('nvim-0.8') == 1 then
     vim.o.winbar            = '%=%f%='
+    vim.o.cmdheight         = 0
 end
 
 vim.opt.laststatus      = 3
@@ -111,4 +112,5 @@ vim.opt.number          = false
 vim.opt.cursorline      = true
 vim.opt.foldenable      = false
 
+-- [ global:
 vim.g.asyncrun_open     = 1

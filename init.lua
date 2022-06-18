@@ -2,6 +2,7 @@ vim.g.mapleader = ","
 vim.cmd("runtime! mine/functions/**/*.vim")
 
 local theme = require'theme'.set_theme()
+require 'statusline'
 require'plugins'
 require'options'
 require'keymaps'
