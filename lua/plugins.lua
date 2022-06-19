@@ -155,7 +155,6 @@ require('packer').startup(function()
   use 'norcalli/nvim-colorizer.lua'
 
 --[ misc ]--------------------------------------------------------------------
-  --use 'nvim-lualine/lualine.nvim'
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
   use { 'ojroques/vim-oscyank', branch = 'main' }                -- yank to clipboard over ssh
   use 'christoomey/vim-tmux-navigator'
@@ -312,37 +311,3 @@ require("null-ls").setup({
     },
 })
 
---[ misc ]----------------------------------------------------------------------
---[[
-if vim.fn.has('nvim-0.8') == 1 then
-  require('lualine').setup{
-    options = {
-      theme = 'nord'
-    },
-    sections = {
-      lualine_a = { },
-      lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {{
-        'filename',
-        file_status = true, -- displays file status (readonly status, modified status)
-        path = 0 -- 0 = filename, 1 = relative, 2 = absolute
-      }},
-    }
-  }
-else
-  require('lualine').setup{
-    options = {
-      theme = 'nord'
-    },
-    sections = {
-      lualine_c = {
-        {
-          'filename',
-          file_status = true, -- displays file status (readonly status, modified status)
-          path = 1 -- 0 = filename, 1 = relative, 2 = absolute
-        }
-      }
-    }
-  }
-end
---]]
