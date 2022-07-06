@@ -72,9 +72,10 @@ M.get_filetype = function()
   return string.format(' %s %s ', icon, filetype):lower()
 end
 
+
 M.get_line_col = function(self)
-  if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
-  return ' Ln %l, Col %c '
+  if self:is_truncated(self.trunc_width.line_col) then return '%p%% %l:%c ' end
+  return ' %p%% %l:%c '
 end
 
 

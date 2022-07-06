@@ -77,12 +77,6 @@ require('packer').startup(function()
 
 --[ treesitter plugins ]--------------------------------------------------------
   use {
-    'nvim-treesitter/nvim-treesitter-refactor',
-    requires = {
-      'nvim-treesitter/nvim-treesitter',
-    }
-  }
-  use {
     'nvim-treesitter/playground',
     requires = {
       'nvim-treesitter/nvim-treesitter',
@@ -108,7 +102,6 @@ require('packer').startup(function()
     'neovim/nvim-lspconfig',
   }
 
-  use "ray-x/lsp_signature.nvim"
   use "onsails/lspkind-nvim"
 
 --[ local ]---------------------------------------------------------------------
@@ -120,7 +113,7 @@ require('packer').startup(function()
 --[ dev ]---------------------------------------------------------------------
   use 'ilAYAli/scMRU.nvim'
   use 'https://github.com/jose-elias-alvarez/null-ls.nvim.git'
-  use 'https://github.com/bfredl/nvim-luadev.git'
+  use 'kyazdani42/nvim-web-devicons'
 
   --use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
@@ -134,11 +127,6 @@ require('packer').startup(function()
     config = function()
       require('gitsigns').setup()
     end
-  }
-
-  use {
-    'sindrets/diffview.nvim',
-    requires = 'kyazdani42/nvim-web-devicons'
   }
 
   use 'mhinz/vim-signify'

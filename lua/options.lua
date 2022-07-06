@@ -43,6 +43,7 @@ if vim.fn.has('nvim-0.8') == 1 then
 end
 
 vim.opt.laststatus      = 3
+vim.opt.showmode        = false
 vim.opt.syntax          = "on"
 vim.opt.termguicolors   = true
 vim.opt.mouse           = "a"

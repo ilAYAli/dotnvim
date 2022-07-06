@@ -79,7 +79,7 @@ vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
 vim.keymap.set('n', 'ZZ', ':wqa!<CR>')
 vim.keymap.set('n', 'QA', ':wqa!<CR>')
 vim.keymap.set('n', '*', '*``')
-vim.keymap.set('n', 's', '<cmd>HopWord<CR>')
+--vim.keymap.set('n', 's', '<cmd>HopWord<CR>')
 vim.keymap.set('n', 'gdh', ':diffget //2<CR>')
 vim.keymap.set('n', 'gdl', ':diffget //3<CR>')
 
