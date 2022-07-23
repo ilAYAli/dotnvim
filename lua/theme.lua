@@ -4,9 +4,9 @@ local M = {}
 function M.set_theme()
     if vim.env['ITERM_PROFILE'] == "Light" then
         vim.o.background = "light"
-        vim.cmd("colorscheme github")
+        vim.cmd("colorscheme github_light")
 
-        vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#eeeeee", fg = "000000" })
+        vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#eeeeee", fg = "#000000" })
         vim.api.nvim_set_hl(0, 'CursorLine',        { bg = "#ddddee" })
         vim.api.nvim_set_hl(0, 'Visual',            { bg = "#eacb8a" })
     else
