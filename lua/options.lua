@@ -39,7 +39,7 @@ end
 
 if vim.fn.has('nvim-0.8') == 1 then
     vim.o.winbar            = '%=%f%='
-    vim.o.cmdheight         = 0
+    vim.o.cmdheight         = 1
 end
 
 vim.opt.laststatus      = 3

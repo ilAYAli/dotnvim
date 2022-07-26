@@ -30,16 +30,18 @@ autocmd("BufWritePost", {
     group = my_au,
     pattern = "plugins.lua",
     callback = function()
-        vim.cmd([[":PackerCompile"]])
+        --vim.cmd([[":PackerCompile"]])
+        vim.cmd.PackerCompile()
     end
 })
 
-autocmd("TextYankPost", {
-    group = my_au,
-    pattern = "*",
-    callback = function()
-        if vim.v.event.operator == "y" and vim.v.event.regname == "" then
-            vim.cmd([[":OSCYankReg"]])
-        end
-    end
-})
+--autocmd("TextYankPost", {
+--    group = my_au,
+--    pattern = "*",
+--    callback = function()
+--        if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+--            --vim.cmd([[":OSCYankReg"]])
+--            vim.cmd.OSCYankReg("+")
+--        end
+--    end
+--})

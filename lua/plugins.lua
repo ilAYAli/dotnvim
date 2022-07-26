@@ -2,7 +2,7 @@
 local packer_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
-  vim.cmd [[packadd packer.nvim]]
+  vim.cmd.packadd("packer.nvim")
 end
 
 -- silence sumneko regarding: unused global 'use':
@@ -97,10 +97,19 @@ require('packer').startup(function()
   }
 
 --[ LSP ]-----------------------------------------------------------------------
-  use {
-    'williamboman/nvim-lsp-installer',
-    'neovim/nvim-lspconfig',
-  }
+  use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+          local saga = require("lspsaga")
+          saga.init_lsp_saga({
+              -- your configuration
+          })
+      end,
+  })
+
+  use { "williamboman/mason.nvim" }
+  use {'neovim/nvim-lspconfig' }
 
   use "onsails/lspkind-nvim"
 
@@ -133,6 +142,7 @@ require('packer').startup(function()
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
 --[ theme ]-------------------------------------------------------------------
+  use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'mhartington/oceanic-next'
   use 'christianchiarulli/nvcode-color-schemes.vim'
@@ -144,7 +154,8 @@ require('packer').startup(function()
 
 --[ misc ]--------------------------------------------------------------------
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
-  use { 'ojroques/vim-oscyank', branch = 'main' }                -- yank to clipboard over ssh
+  use 'https://github.com/roxma/vim-tmux-clipboard.git'
+  use {'ojroques/nvim-osc52'}
   use 'christoomey/vim-tmux-navigator'
   use 'vimpostor/vim-tpipeline'
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
@@ -255,7 +266,7 @@ cmp.setup.cmdline(':', {
 })
 
 --[ LSP ]-----------------------------------------------------------------------
-require("nvim-lsp-installer").setup {}
+require("mason").setup()
 
 if string.sub(vim.fn.hostname(), 1, 9) == "Xdbuild29" then
     require('lspconfig')['ccls'].setup {
