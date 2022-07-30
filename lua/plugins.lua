@@ -32,6 +32,14 @@ require('packer').startup(function()
             }
           }
         },
+        pickers = {
+          find_files = {
+            find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
+            layout_config = {
+              height = 0.70
+            }
+          }
+        },
         opts = {
           show_untracked = false,
           ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
@@ -97,6 +105,12 @@ require('packer').startup(function()
   }
 
 --[ LSP ]-----------------------------------------------------------------------
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+
   use({
       "glepnir/lspsaga.nvim",
       branch = "main",
@@ -107,9 +121,6 @@ require('packer').startup(function()
           })
       end,
   })
-
-  use { "williamboman/mason.nvim" }
-  use {'neovim/nvim-lspconfig' }
 
   use "onsails/lspkind-nvim"
 
@@ -155,7 +166,7 @@ require('packer').startup(function()
 --[ misc ]--------------------------------------------------------------------
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
   use 'https://github.com/roxma/vim-tmux-clipboard.git'
-  use {'ojroques/nvim-osc52'}
+  use 'ojroques/nvim-osc52'
   use 'christoomey/vim-tmux-navigator'
   use 'vimpostor/vim-tpipeline'
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
@@ -267,6 +278,7 @@ cmp.setup.cmdline(':', {
 
 --[ LSP ]-----------------------------------------------------------------------
 require("mason").setup()
+require("mason-lspconfig").setup()
 
 if string.sub(vim.fn.hostname(), 1, 9) == "Xdbuild29" then
     require('lspconfig')['ccls'].setup {
@@ -310,3 +322,12 @@ require("null-ls").setup({
     },
 })
 
+--[ workarounds ]---------------------------------------------------------------
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
