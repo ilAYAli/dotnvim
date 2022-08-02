@@ -115,10 +115,9 @@ require('packer').startup(function()
       "glepnir/lspsaga.nvim",
       branch = "main",
       config = function()
-          local saga = require("lspsaga")
+        local saga = require("lspsaga")
           saga.init_lsp_saga({
-              -- your configuration
-          })
+        })
       end,
   })
 
@@ -153,6 +152,14 @@ require('packer').startup(function()
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
 --[ theme ]-------------------------------------------------------------------
+  --use 'feline-nvim/feline.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('lualine').setup()
+    end
+  }
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'mhartington/oceanic-next'
@@ -168,7 +175,7 @@ require('packer').startup(function()
   use 'https://github.com/roxma/vim-tmux-clipboard.git'
   use 'ojroques/nvim-osc52'
   use 'christoomey/vim-tmux-navigator'
-  use 'vimpostor/vim-tpipeline'
+  --use 'vimpostor/vim-tpipeline'
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
 
 end)
@@ -321,6 +328,8 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.cppcheck,
     },
 })
+
+--[ misc ]----------------------------------------------------------------------
 
 --[ workarounds ]---------------------------------------------------------------
 local notify = vim.notify

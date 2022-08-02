@@ -34,8 +34,8 @@ end)
 -- start disabled:
 --vim.api.nvim_feedkeys(",v", "m", true)
 vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
-vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
+vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 
 vim.keymap.set('n', '<leader>o', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>')
