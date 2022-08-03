@@ -111,16 +111,6 @@ require('packer').startup(function()
     "neovim/nvim-lspconfig",
   }
 
-  use({
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-      config = function()
-        local saga = require("lspsaga")
-          saga.init_lsp_saga({
-        })
-      end,
-  })
-
   use "onsails/lspkind-nvim"
 
 --[ local ]---------------------------------------------------------------------
@@ -168,7 +158,6 @@ require('packer').startup(function()
   use 'https://github.com/theniceboy/nvim-deus.git'
   use 'projekt0n/github-nvim-theme'
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
-  use 'norcalli/nvim-colorizer.lua'
 
 --[ misc ]--------------------------------------------------------------------
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
@@ -284,6 +273,10 @@ cmp.setup.cmdline(':', {
 })
 
 --[ LSP ]-----------------------------------------------------------------------
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "single",
+})
+
 require("mason").setup()
 require("mason-lspconfig").setup()
 

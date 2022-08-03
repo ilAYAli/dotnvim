@@ -30,8 +30,10 @@ function M.set_theme()
         vim.api.nvim_set_hl(0, 'DiffChange',        { bg = "#000000" })
     end
 
-    vim.api.nvim_set_hl(0, 'WinBar',       	    { bg = "#3b4252", fg = "#dddddd" })
-    vim.api.nvim_set_hl(0, 'WinBarModified',   	    { bg = "#dedede", fg = "#363636" })
+    --vim.api.nvim_set_hl(0, 'NormalFloat',           { fg = "#ff9e3b" })
+    vim.api.nvim_set_hl(0, 'FloatBorder',           { fg = "#ff9e3b" })
+    vim.api.nvim_set_hl(0, 'WinBar',                { bg = "#3b4252", fg = "#dddddd" })
+    vim.api.nvim_set_hl(0, 'WinBarModified',        { bg = "#dedede", fg = "#363636" })
 
     vim.api.nvim_set_hl(0, 'ExtraWhitespace',       { bg = "#ff0000" })
     vim.cmd.match("ExtraWhitespace /\\s\\+\\%#\\@<!$/")

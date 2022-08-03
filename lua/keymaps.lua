@@ -75,8 +75,12 @@ vim.keymap.set('n', '<s-up>', function()
 end)
 
 vim.keymap.set('n', '<s-down>', '<c-o>')
-vim.keymap.set('n', ',<space>', function() vim.lsp.buf.code_action() end)
+
+vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+--vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, { silent = true })
+
+
 vim.keymap.set('n', 'ZZ', ':wqa!<CR>')
 vim.keymap.set('n', 'QA', ':wqa!<CR>')
 vim.keymap.set('n', '*', '*``')

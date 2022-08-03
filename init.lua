@@ -5,10 +5,10 @@ local theme = require'theme'.set_theme()
 --require 'statusline'
 require'plugins'
 require'options'
-require'keymaps'
 require'commands'
 require'utils'
 require'autocmd'
+require'keymaps'
 
 vim.cmd("cabbrev E e")
 vim.cmd("cabbrev Build AsyncRun build")
