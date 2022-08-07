@@ -1,6 +1,5 @@
 .cache/
 colors/
-ftplugin/
 initlsp.vim
 lua/packer/
 packer

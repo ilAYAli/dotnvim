@@ -112,6 +112,7 @@ require('packer').startup(function()
   }
 
   use "onsails/lspkind-nvim"
+  use "weilbith/nvim-code-action-menu"
 
 --[ local ]---------------------------------------------------------------------
   use '~/.config/nvim/mine/plugins/start'
@@ -152,7 +153,6 @@ require('packer').startup(function()
   }
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
-  use 'mhartington/oceanic-next'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'folke/tokyonight.nvim'
   use 'https://github.com/theniceboy/nvim-deus.git'
