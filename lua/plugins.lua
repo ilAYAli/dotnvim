@@ -164,7 +164,7 @@ require('packer').startup(function()
   use 'https://github.com/wsdjeg/vim-fetch.git'                -- file-line alt.
   use 'https://github.com/roxma/vim-tmux-clipboard.git'
   use 'ojroques/nvim-osc52'
-  use 'christoomey/vim-tmux-navigator'
+
   --use 'vimpostor/vim-tpipeline'
   use 'https://github.com/tpope/vim-abolish.git'               -- Subvert
 
@@ -341,6 +341,21 @@ end
 ---</osc52>---------
 
 require'colorizer'.setup()
+
+use { 'alexghergh/nvim-tmux-navigation', config = function()
+  require'nvim-tmux-navigation'.setup {
+    disable_when_zoomed = true, -- defaults to false
+      keybindings = {
+        left = "<C-h>",
+        down = "<C-j>",
+        up = "<C-k>",
+        right = "<C-l>",
+        last_active = "<C-\\>",
+        next = "<C-Space>",
+      }
+  }
+  end
+}
 
 --[ misc ]----------------------------------------------------------------------
 
