@@ -124,6 +124,8 @@ require('packer').startup(function()
   use 'ilAYAli/scMRU.nvim'
   use 'https://github.com/jose-elias-alvarez/null-ls.nvim.git'
   use 'kyazdani42/nvim-web-devicons'
+  use 'norcalli/nvim-colorizer.lua'
+  use 'lukas-reineke/indent-blankline.nvim'
 
   --use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
@@ -153,8 +155,7 @@ require('packer').startup(function()
   }
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
-  use 'christianchiarulli/nvcode-color-schemes.vim'
-  use 'folke/tokyonight.nvim'
+  --use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'https://github.com/theniceboy/nvim-deus.git'
   use 'projekt0n/github-nvim-theme'
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
@@ -321,6 +322,25 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.cppcheck,
     },
 })
+
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
+}
+
+---<osc52>---------
+local function copy(lines, _)
+  require('osc52').copy(table.concat(lines, '\n'))
+end
+
+local function paste()
+  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+end
+
+---</osc52>---------
+
+require'colorizer'.setup()
 
 --[ misc ]----------------------------------------------------------------------
 

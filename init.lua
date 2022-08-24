@@ -1,6 +1,7 @@
 vim.g.mapleader = ","
 vim.cmd("runtime! mine/functions/**/*.vim")
 
+vim.opt.termguicolors = true
 local theme = require'theme'.set_theme()
 --require 'statusline'
 require'plugins'

@@ -76,9 +76,8 @@ end)
 
 vim.keymap.set('n', '<s-down>', '<c-o>')
 
---vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
-vim.keymap.set('n', '<leader>ca', ":CodeActionMenu<CR>")
-vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
 
 vim.keymap.set('n', 'ZZ', ':wqa!<CR>')
 vim.keymap.set('n', 'QA', ':wqa!<CR>')
