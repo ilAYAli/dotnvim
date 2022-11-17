@@ -11,6 +11,7 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+
 --[ telescope ]-----------------------------------------------------------------
   use {
     'nvim-telescope/telescope.nvim',
@@ -18,35 +19,31 @@ require('packer').startup(function()
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
     },
-    config = function()
-      require('telescope').setup {
-        defaults = {
-          layout_config = {
-            vertical = {
-              width=0.99,
-              height=0.99
-            },
-            horizontal = {
-              width=0.99,
-              height=0.99
-            }
-          }
-        },
-        pickers = {
-          find_files = {
-            find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
-            layout_config = {
-              height = 0.70
-            }
-          }
-        },
-        opts = {
-          show_untracked = false,
-          ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
-        },
-      }
-    end
   }
+
+  require('telescope').setup{
+    defaults = {
+      layout_strategy = "vertical",
+      fname_width = 70,
+      mappings = { },
+      layout_config = {
+        vertical = { width=0.99, height=0.99 },
+        horizontal = { width=0.99, height=0.99 }
+      }
+    },
+    pickers = {
+      colorscheme = {
+        enable_preview = true
+      },
+      opts = {
+        show_untracked = false,
+        ignore_patterns = {"*.git/*", "*.gitignore", "*.ccls-cache/*", "*/tmp/*", "*.cache/*"},
+      },
+    },
+    extensions = {
+    }
+  }
+
 
 --[ treesitter ]----------------------------------------------------------------
   use {
@@ -54,8 +51,9 @@ require('packer').startup(function()
     run = ":TSUpdate",
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "cpp", "python", "lua" },
+        ensure_installed = { "c", "cpp", "python", "lua", "javascript" },
         -- ensure_installed = "maintained",
+        auto_install = true,
         ignore_install = { "haskell" },
         highlight = {
           enable = true,
@@ -155,7 +153,6 @@ require('packer').startup(function()
   }
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
-  --use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'https://github.com/theniceboy/nvim-deus.git'
   use 'projekt0n/github-nvim-theme'
   use 'tikhomirov/vim-glsl'                                    -- opengl syntax highlightning:
@@ -176,13 +173,6 @@ end)
 -- SETUP
 --------------------------------------------------------------------------------
 
---[ telescope ]-----------------------------------------------------------------
-require('telescope').setup{
-  defaults = {
-    layout_strategy = "vertical",
-  }
-}
-
 --[ treesitter ]----------------------------------------------------------------
 require("nvim-treesitter.configs").setup {
   highlight = {
@@ -200,7 +190,8 @@ require("nvim-treesitter.configs").setup {
 }
 
 --[ cmp ]-----------------------------------------------------------------------
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- cmp_nvim_lsp.default_capabilitie
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local clangd_cmd = {
   "clangd",
   "--background-index",
@@ -281,16 +272,16 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-if string.sub(vim.fn.hostname(), 1, 9) == "Xdbuild29" then
-    require('lspconfig')['ccls'].setup {
-      capabilities = capabilities
-    }
-else
-    require('lspconfig')['clangd'].setup {
-      cmd = clangd_cmd,
-      capabilities = capabilities
-    }
-end
+
+require('lspconfig')['clangd'].setup {
+  cmd = clangd_cmd,
+  capabilities = capabilities
+}
+
+require('lspconfig')['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -343,18 +334,17 @@ end
 require'colorizer'.setup()
 
 use { 'alexghergh/nvim-tmux-navigation', config = function()
-  require'nvim-tmux-navigation'.setup {
-    disable_when_zoomed = true, -- defaults to false
-      keybindings = {
-        left = "<C-h>",
-        down = "<C-j>",
-        up = "<C-k>",
-        right = "<C-l>",
-        last_active = "<C-\\>",
-        next = "<C-Space>",
-      }
-  }
-  end
+        local nvim_tmux_nav = require('nvim-tmux-navigation')
+        nvim_tmux_nav.setup {
+            disable_when_zoomed = true -- defaults to false
+        }
+        vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+        vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+        vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+        vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+        vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+        vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+    end
 }
 
 --[ misc ]----------------------------------------------------------------------
@@ -368,3 +358,4 @@ vim.notify = function(msg, ...)
 
     notify(msg, ...)
 end
+

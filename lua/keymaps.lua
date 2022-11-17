@@ -61,13 +61,11 @@ vim.keymap.set('n', '<leader>-', function() vim.fn.execute('split') end)
 
 -- other:
 vim.keymap.set('n', '<s-right>', function()
-    local ts = require("telescope.builtin")
-    ts.lsp_definitions({layout_strategy="vertical",layout_config={width=0.99, height=0.99}})
+    local ts = require("telescope.builtin").lsp_definitions()
 end)
 
 vim.keymap.set('n', '<s-left>', function()
-    local ts = require("telescope.builtin")
-    ts.lsp_references()
+    require("telescope.builtin").lsp_references({fname_width=70})
 end)
 
 vim.keymap.set('n', '<s-up>', function()

@@ -36,6 +36,10 @@ function M.set_theme()
     vim.api.nvim_set_hl(0, 'WinBar',                { bg = "#3b4252", fg = "#dddddd" })
     vim.api.nvim_set_hl(0, 'WinBarModified',        { bg = "#dedede", fg = "#363636" })
 
+    -- virtual text: (:filt Diag hi)
+    --vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { bg = "#54524f", fg = "#ebcb8b" })
+    vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { bg = "#30322f", fg = "#cccccc" })
+
     vim.api.nvim_set_hl(0, 'ExtraWhitespace',       { bg = "#ff0000" })
     vim.cmd.match("ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 end

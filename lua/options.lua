@@ -22,7 +22,6 @@ vim.tbl_map(
   }
 )
 
-
 if require'utils'.is_darwin() then
   vim.g.clipboard = {
     name = "macOS-clipboard",
@@ -72,7 +71,7 @@ vim.opt.selection               = "inclusive"                   -- Selection is 
 vim.opt.visualbell              = true
 vim.opt.joinspaces              = false                         -- Don't use double space after a period
 vim.opt.shortmess               = "cfilnxtToOFI"
-vim.opt.showbreak               = "↳  ⇢"
+--vim.opt.showbreak               = "↳  ⇢"
 vim.opt.spelllang               = "nb,en"
 vim.opt.switchbuf               = "usetab,useopen"
 vim.opt.autoread                = false                         -- Don't autoread on external file change
