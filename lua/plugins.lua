@@ -44,7 +44,6 @@ require('packer').startup(function()
     }
   }
 
-
 --[ treesitter ]----------------------------------------------------------------
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -127,6 +126,10 @@ require('packer').startup(function()
 
   --use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim'
+  }
   use 'skywind3000/asyncrun.vim'
 
   use {
@@ -152,6 +155,7 @@ require('packer').startup(function()
     end
   }
   use 'rebelot/kanagawa.nvim'
+  use 'sam4llis/nvim-tundra'
   use 'EdenEast/nightfox.nvim'
   use 'https://github.com/theniceboy/nvim-deus.git'
   use 'projekt0n/github-nvim-theme'
@@ -313,6 +317,8 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.cppcheck,
     },
 })
+
+require('neogit').setup{}
 
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on

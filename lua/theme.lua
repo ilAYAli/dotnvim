@@ -14,6 +14,7 @@ function M.set_theme()
         --vim.cmd.colorscheme("nord")
         --vim.cmd("colorscheme nightfox")
         --vim.cmd.colorscheme('kanagawa')
+        --vim.cmd("colorscheme tundra")
         vim.cmd("colorscheme nordfox")
         vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
         vim.api.nvim_set_hl(0, 'TelescopeNormal',   { bg = "#151515" })
@@ -22,6 +23,8 @@ function M.set_theme()
         vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
         vim.api.nvim_set_hl(0, 'PmenuSel',          { bg = "#aaaaaa", fg = "#000000" })
         vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
+        
+        vim.api.nvim_set_hl(0, 'Comment',           { fg = "#8092ac" })
 
         -- -- [ diff ]-----------------------------------------------------------------
         vim.api.nvim_set_hl(0, 'DiffAdd',           { bg = "#285d16", fg = "#dde7ea" })
