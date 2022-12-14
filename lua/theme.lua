@@ -23,7 +23,7 @@ function M.set_theme()
         vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
         vim.api.nvim_set_hl(0, 'PmenuSel',          { bg = "#aaaaaa", fg = "#000000" })
         vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
-        
+
         vim.api.nvim_set_hl(0, 'Comment',           { fg = "#8092ac" })
 
         -- -- [ diff ]-----------------------------------------------------------------

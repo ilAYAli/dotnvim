@@ -44,4 +44,18 @@ autocmd("TextYankPost", {
     end
 })
 
-
+autocmd("RecordingEnter", {
+    group = my_au,
+    pattern = "*",
+    callback = function()
+      print("recording");
+      vim.o.cmdheight = 1
+    end
+})
+autocmd("RecordingLeave", {
+    group = my_au,
+    pattern = "*",
+    callback = function()
+      vim.o.cmdheight = 0
+    end
+})
