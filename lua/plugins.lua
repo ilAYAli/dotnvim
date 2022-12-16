@@ -124,6 +124,16 @@ require('packer').startup(function()
   use 'norcalli/nvim-colorizer.lua'
   use 'lukas-reineke/indent-blankline.nvim'
 
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({})
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+    }
+  })
   --use 'ggandor/lightspeed.nvim'
   use 'tpope/vim-fugitive'
   use {
@@ -146,7 +156,6 @@ require('packer').startup(function()
   use 'https://github.com/samoshkin/vim-mergetool.git'
 
 --[ theme ]-------------------------------------------------------------------
-  use 'feline-nvim/feline.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
