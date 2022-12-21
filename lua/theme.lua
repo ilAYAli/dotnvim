@@ -1,7 +1,7 @@
 ---[ let: global ]--------------------------------------------------------------
 local M = {}
 
-function M.set_theme()
+function M.setup()
     if vim.env['ITERM_PROFILE'] == "Light" then
         vim.o.background = "light"
         vim.cmd.colorscheme("github_light")
@@ -15,7 +15,12 @@ function M.set_theme()
         --vim.cmd("colorscheme nightfox")
         --vim.cmd.colorscheme('kanagawa')
         --vim.cmd("colorscheme tundra")
-        vim.cmd("colorscheme nordfox")
+        --vim.cmd("colorscheme nordfox")
+        local ok, _ = pcall(vim.cmd, 'colorscheme nordfox')
+        if not ok then
+          vim.cmd 'colorscheme default' -- if the above fails, then use default
+        end
+
         vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
         vim.api.nvim_set_hl(0, 'TelescopeNormal',   { bg = "#151515" })
         vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
