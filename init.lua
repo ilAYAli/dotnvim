@@ -16,15 +16,7 @@ if not vim.loop.fs_stat(lazypath) then
  end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup("plugins", {
-  performance = {
-    rtp = {
-       reset = false,
-    },
-  },
-  debug = true,
-})
-
+require("lazy").setup("plugins")
 require('setup')
 require('autocmd')
 require('options')
