@@ -24,10 +24,7 @@ require('commands')
 require('utils')
 require('keymaps')
 require('neovide')
-
 require 'statusline'
-
-require('theme').setup()
 require('theme').setup()
 
 vim.cmd("cabbrev E e")

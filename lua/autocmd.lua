@@ -11,14 +11,23 @@ local my_au = augroup("my_au", { clear = true })
 --     end
 -- })
 
-autocmd("ColorScheme", {
-    group = my_au,
-    pattern = "*",
-    callback = function()
-      require('theme').setup();
-        --vim.cmd("colorscheme nordfox")
-    end
-})
+-- autocmd("ColorSchemePre", {
+--     group = my_au,
+--     pattern = "*",
+--     callback = function()
+--       require('theme').setup();
+--         vim.cmd("hi clear");
+--     end
+-- })
+--
+--autocmd("ColorScheme", {
+--    group = my_au,
+--    pattern = "*",
+--    callback = function()
+--      require('theme').setup();
+--        --vim.cmd("colorscheme nordfox")
+--    end
+--})
 
 autocmd("BufReadPost", {
     group = my_au,

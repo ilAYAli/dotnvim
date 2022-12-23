@@ -126,6 +126,7 @@ return {
 
   { 'kyazdani42/nvim-web-devicons' },
   { 'lukas-reineke/indent-blankline.nvim' },
+  { 'norcalli/nvim-colorizer.lua' },
 
 --[ themes ]--------------------------------------------------------------------
   { 'rebelot/kanagawa.nvim' },
@@ -133,8 +134,6 @@ return {
   { 'EdenEast/nightfox.nvim' },
   { 'theniceboy/nvim-deus' },
   { 'projekt0n/github-nvim-theme' },
-
-  { 'norcalli/nvim-colorizer.lua' },
 
 --[ misc ]----------------------------------------------------------------------
   { 'roxma/vim-tmux-clipboard' },
