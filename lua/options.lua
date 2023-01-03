@@ -37,7 +37,8 @@ if require'utils'.is_darwin() then
 end
 
 if vim.fn.has('nvim-0.8') == 1 then
-    vim.o.winbar            = '%=%f%='
+    vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%f%="
+    --vim.o.winbar            = '%=%f%='
     vim.o.cmdheight         = 0
 end
 

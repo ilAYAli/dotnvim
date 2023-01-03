@@ -124,6 +124,9 @@ return {
     end
   },
 
+  { 'SmiteshP/nvim-navic',
+    dependencies = 'neovim/nvim-lspconfig'
+  },
   { 'kyazdani42/nvim-web-devicons' },
   { 'lukas-reineke/indent-blankline.nvim' },
   { 'norcalli/nvim-colorizer.lua' },
