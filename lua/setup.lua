@@ -148,6 +148,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+
 require'lspconfig'.sumneko_lua.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
@@ -200,6 +201,21 @@ require'colorizer'.setup()
 
 --[ misc ]----------------------------------------------------------------------
 
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = {
+		border = "single",
+		format = function(diagnostic)
+			return string.format(
+				"%s (%s) [%s]",
+				diagnostic.message,
+				diagnostic.source,
+				diagnostic.code or diagnostic.user_data.lsp.code
+			)
+		end,
+	},
+})
 --[ workarounds ]---------------------------------------------------------------
 local notify = vim.notify
 vim.notify = function(msg, ...)
@@ -210,3 +226,6 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
+require("neo-tree").setup({
+  window = { width = 25 },
+})
