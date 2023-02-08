@@ -81,6 +81,22 @@ cmp.setup {
       select = true,
     })
   },
+  window = {
+		documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered({
+			col_offset = -3,
+		}),
+	},
+  formatting = {
+		fields = { "kind", "abbr", "menu" },
+		format = function(entry, item)
+			local kind = string.lower(item.kind)
+			item.kind = icons.kinds[item.kind] or "?"
+			item.abbr = item.abbr:match("[^(]+")
+			item.menu = (icons.cmp_sources[entry.source.name] or "") .. kind
+			return item
+		end,
+	},
   experimental = {
     native_menu = false,
     ghost_text = true
