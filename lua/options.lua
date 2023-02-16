@@ -42,6 +42,9 @@ if vim.fn.has('nvim-0.8') == 1 then
     vim.o.cmdheight         = 0
 end
 
+vim.opt.guifont="SauseCodePro Nerd Font:h10"
+
+
 vim.opt.laststatus              = 3
 vim.opt.showmode                = false
 vim.opt.syntax                  = "on"
