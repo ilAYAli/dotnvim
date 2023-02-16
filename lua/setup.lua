@@ -1,7 +1,3 @@
---------------------------------------------------------------------------------
--- SETUP
---------------------------------------------------------------------------------
-
 --[ telescope ]-----------------------------------------------------------------
 require('telescope').setup{
   defaults = {
@@ -42,23 +38,6 @@ require("nvim-treesitter.configs").init {
   }
 }
 
---[ cmp ]-----------------------------------------------------------------------
--- cmp_nvim_lsp.default_capabilitie
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local clangd_cmd = {
-  "clangd",
-  "--background-index",
-  "-j=12",
-  "--clang-tidy",
-  "--clang-tidy-checks=*",
-  "--all-scopes-completion",
-  "--cross-file-rename",
-  "--completion-style=detailed",
-  "--header-insertion-decorators",
-  "--header-insertion=iwyu",
-  "--pch-storage=memory",
-}
-
 local cmp = require('cmp')
 cmp.setup {
   snippet = {
@@ -81,22 +60,6 @@ cmp.setup {
       select = true,
     })
   },
-  window = {
-		documentation = cmp.config.window.bordered(),
-		completion = cmp.config.window.bordered({
-			col_offset = -3,
-		}),
-	},
-  formatting = {
-		fields = { "kind", "abbr", "menu" },
-		format = function(entry, item)
-			local kind = string.lower(item.kind)
-			item.kind = icons.kinds[item.kind] or "?"
-			item.abbr = item.abbr:match("[^(]+")
-			item.menu = (icons.cmp_sources[entry.source.name] or "") .. kind
-			return item
-		end,
-	},
   experimental = {
     native_menu = false,
     ghost_text = true
@@ -141,10 +104,41 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 require("mason").setup()
 require("mason-lspconfig").setup()
 
---[ dev ]-----------------------------------------------------------------------
-
+--[ COMMON ]--------------------------------------------------------------------
 local navic = require("nvim-navic")
 navic.setup { highlight = true }
+
+--[ CSHARP ]--------------------------------------------------------------------
+local util = require'lspconfig.util'
+require'lspconfig'.omnisharp.setup{
+  root_dir = function(file)
+    if file:sub(-#".csx") == ".csx" then
+      return util.path.dirname(file)
+    end
+    return util.root_pattern("*.sln")(file) or util.root_pattern("*.csproj")(file)
+    --return vim.fn.getcwd()
+  end,
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
+
+
+--[ C++ ]-----------------------------------------------------------------------
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local clangd_cmd = {
+  "clangd",
+  "--background-index",
+  "-j=12",
+  "--clang-tidy",
+  "--clang-tidy-checks=*",
+  "--all-scopes-completion",
+  "--cross-file-rename",
+  "--completion-style=detailed",
+  "--header-insertion-decorators",
+  "--header-insertion=iwyu",
+  "--pch-storage=memory",
+}
 
 require('lspconfig')['clangd'].setup {
   cmd = clangd_cmd,
@@ -154,6 +148,7 @@ require('lspconfig')['clangd'].setup {
   end
 }
 
+--[ JS ]------------------------------------------------------------------------
 require('lspconfig')['tsserver'].setup{
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
@@ -165,6 +160,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 
+--[ LUA ]-----------------------------------------------------------------------
 require'lspconfig'.sumneko_lua.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
@@ -188,12 +184,7 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.diagnostics.cppcheck,
-    },
-})
-
+--[ MISC DEV ]------------------------------------------------------------------
 require('neogit').setup{}
 
 require("indent_blankline").setup {
@@ -218,20 +209,21 @@ require'colorizer'.setup()
 --[ misc ]----------------------------------------------------------------------
 
 vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
-	float = {
-		border = "single",
-		format = function(diagnostic)
-			return string.format(
-				"%s (%s) [%s]",
-				diagnostic.message,
-				diagnostic.source,
-				diagnostic.code or diagnostic.user_data.lsp.code
-			)
-		end,
-	},
+  virtual_text = false,
+  signs = true,
+  float = {
+    border = "single",
+    format = function(diagnostic)
+      return string.format(
+        "%s (%s) [%s]",
+        diagnostic.message,
+        diagnostic.source,
+        diagnostic.code or diagnostic.user_data.lsp.code
+      )
+    end,
+  },
 })
+
 --[ workarounds ]---------------------------------------------------------------
 local notify = vim.notify
 vim.notify = function(msg, ...)
