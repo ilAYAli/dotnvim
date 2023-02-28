@@ -161,7 +161,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 
 --[ LUA ]-----------------------------------------------------------------------
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,

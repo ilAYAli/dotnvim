@@ -20,16 +20,16 @@ if not vim.loop.fs_stat(lazypath) then
  end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup("plugins")
-require('setup')
-require('autocmd')
-require('options')
-require('commands')
-require('utils')
-require('keymaps')
-require('neovide')
-require 'statusline'
-require('theme').setup()
+require'lazy'.setup("plugins")
+require'setup'
+require'autocmd'
+require'options'
+require'commands'
+require'utils'
+require'keymaps'
+require'neovide'
+require'statusline'
+require'theme'.setup()
 
 vim.cmd("cabbrev E e")
 vim.cmd("cabbrev Build AsyncRun build")
