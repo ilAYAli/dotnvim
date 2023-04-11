@@ -129,7 +129,6 @@ return {
           },
         },
         dependencies = {
-          -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
           "MunifTanjim/nui.nvim",
           "rcarriga/nvim-notify",
           },
@@ -166,15 +165,14 @@ return {
   { 'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig'
   },
+
   { 'kyazdani42/nvim-web-devicons' },
   { 'norcalli/nvim-colorizer.lua' },
 
 --[ themes ]--------------------------------------------------------------------
   { 'rebelot/kanagawa.nvim' },
-  { 'sam4llis/nvim-tundra' },
   { 'EdenEast/nightfox.nvim' },
   { 'theniceboy/nvim-deus' },
-  { 'projekt0n/github-nvim-theme' },
 
 --[ misc ]----------------------------------------------------------------------
   { 'roxma/vim-tmux-clipboard' },

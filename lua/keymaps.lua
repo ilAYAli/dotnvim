@@ -46,22 +46,6 @@ vim.keymap.set('n', '<leader>ws', ':%s/\\s\\+$//<CR>')
 vim.keymap.set('n', '<leader>hg', ':TSHighlightCapturesUnderCursor<CR>')
 vim.keymap.set('n', '<leader>,', '<c-w>w')
 
-local telescope = require('telescope.builtin')
-local telescope_state = require('telescope.state')
-local last_search = nil
-
-function search_with_cache()
-  if last_search == nil then
-    telescope.live_grep()
-
-    local cached_pickers = telescope_state.get_global_key "cached_pickers" or {}
-    last_search = cached_pickers[1]
-  else
-    telescope.resume({ picker = last_search })
-  end
-end
-
-  --vim.keymap.set('n', '<leader>ss', search_with_cache)
 
 --vim.keymap.set('n', '<leader>ss', ':Telescope live_grep default_text=vim.fn.expand("<cword>")')
 vim.keymap.set('n', '<leader>.', '<esc>:w!<CR>')
