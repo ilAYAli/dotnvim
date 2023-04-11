@@ -187,11 +187,11 @@ require'lspconfig'.lua_ls.setup {
 --[ MISC DEV ]------------------------------------------------------------------
 require('neogit').setup{}
 
-require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
-}
+--require("indent_blankline").setup {
+--    -- for example, context is off by default, use this to turn it on
+--    show_current_context = true,
+--    show_current_context_start = true,
+--}
 
 ---<osc52>---------
 local function copy(lines, _)
@@ -233,7 +233,3 @@ vim.notify = function(msg, ...)
 
     notify(msg, ...)
 end
-
-require("neo-tree").setup({
-  window = { width = 25 },
-})
