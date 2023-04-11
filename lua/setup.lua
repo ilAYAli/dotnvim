@@ -208,21 +208,21 @@ require'colorizer'.setup()
 
 --[ misc ]----------------------------------------------------------------------
 
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  float = {
-    border = "single",
-    format = function(diagnostic)
-      return string.format(
-        "%s (%s) [%s]",
-        diagnostic.message,
-        diagnostic.source,
-        diagnostic.code or diagnostic.user_data.lsp.code
-      )
-    end,
-  },
-})
+--vim.diagnostic.config({
+--  virtual_text = false,
+--  signs = true,
+--  float = {
+--    border = "single",
+--    format = function(diagnostic)
+--      return string.format(
+--        "%s (%s) [%s]",
+--        diagnostic.message,
+--        diagnostic.source,
+--        diagnostic.code or diagnostic.user_data.lsp.code
+--      )
+--    end,
+--  },
+--})
 
 --[ workarounds ]---------------------------------------------------------------
 local notify = vim.notify
