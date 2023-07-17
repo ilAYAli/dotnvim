@@ -62,17 +62,18 @@ return {
     }
   },
 
+--[ lsp ]-----------------------------------------------------------------------
+  { 'neovim/nvim-lspconfig' },
+  { "onsails/lspkind-nvim" },
+  { "weilbith/nvim-code-action-menu" },
+  -- { 'jose-elias-alvarez/null-ls.nvim' },
+
 --[ mason ]---------------------------------------------------------------------
   {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+    build = ":MasonUpdate"
   },
-
---[ lsp ]-----------------------------------------------------------------------
-  { "onsails/lspkind-nvim" },
-  { "weilbith/nvim-code-action-menu" },
-  -- { 'jose-elias-alvarez/null-ls.nvim' },
 
 --[ mine ]----------------------------------------------------------------------
   { dir = '~/.config/nvim/mine/plugins/start' },
