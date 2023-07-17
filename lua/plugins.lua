@@ -105,52 +105,20 @@ return {
 
 --[ styling ]-------------------------------------------------------------------
 
- --{
- --   "folke/noice.nvim",
- --   config = function()
- --     require("noice").setup({
- --       lsp = {
- --         override = {
- --           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
- --           ["vim.lsp.util.stylize_markdown"] = true,
- --           ["cmp.entry.get_documentation"] = true,
- --         },
- --       },
- --       dependencies = {
- --         "MunifTanjim/nui.nvim",
- --         "rcarriga/nvim-notify",
- --         },
- --       presets = {
- --         bottom_search = true, -- use a classic bottom cmdline for search
- --         command_palette = true, -- position the cmdline and popupmenu together
- --         long_message_to_split = true, -- long messages will be sent to a split
- --         inc_rename = false, -- enables an input dialog for inc-rename.nvim
- --         lsp_doc_border = false, -- add a border to hover docs and signature help
- --       },
- --       views = {
- --         cmdline_popup = {
- --           position = {
- --             col = "50%",
- --             row = "10%",
- --           },
- --           size = {
- --             min_width = 100,
- --           },
- --         },
- --       },
- --   })
- --   end,
- -- },
+  { -- notifucation popup:
+    'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require("notify")
+    end
+  },
 
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
-    config = function()
-      require('lualine').setup()
-    end
   },
 
-  { 'SmiteshP/nvim-navic',
+  { -- winbar: function:
+    'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig'
   },
 
@@ -162,54 +130,6 @@ return {
   { 'theniceboy/nvim-deus' },
 
 --[ misc ]----------------------------------------------------------------------
-  --{
-  --  "folke/flash.nvim",
-  --  event = "VeryLazy",
-  --  ---@type Flash.Config
-  --  opts = {},
-  --  keys = {
-  --    {
-  --      "s",
-  --      mode = { "n", "x", "o" },
-  --      function()
-  --        require("flash").jump()
-  --      end,
-  --      desc = "Flash",
-  --    },
-  --    {
-  --      "S",
-  --      mode = { "n", "o", "x" },
-  --      function()
-  --        require("flash").treesitter()
-  --      end,
-  --      desc = "Flash Treesitter",
-  --    },
-  --    {
-  --      "r",
-  --      mode = "o",
-  --      function()
-  --        require("flash").remote()
-  --      end,
-  --      desc = "Remote Flash",
-  --    },
-  --    {
-  --      "R",
-  --      mode = { "o", "x" },
-  --      function()
-  --        require("flash").treesitter_search()
-  --      end,
-  --      desc = "Flash Treesitter Search",
-  --    },
-  --    {
-  --      "<c-s>",
-  --      mode = { "c" },
-  --      function()
-  --        require("flash").toggle()
-  --      end,
-  --      desc = "Toggle Flash Search",
-  --    },
-  --  },
-  --},
   { 'roxma/vim-tmux-clipboard' },
   { 'ojroques/nvim-osc52' },
   --{ 'lewis6991/fileline.nvim' },
