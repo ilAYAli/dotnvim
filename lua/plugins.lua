@@ -81,7 +81,12 @@ return {
   { dir = '~/.config/nvim/mine/plugins/pastetoggle' },
   { dir = '~/.config/nvim/mine/plugins/namespace' },
 
-  { 'ilAYAli/scMRU.nvim' },
+  {
+    'ilAYAli/scMRU.nvim',
+    enabled = function()
+      vim.fn.has('unix')
+    end
+  },
   { 'kkharji/sqlite.lua' },
 
 --[ dev ]-----------------------------------------------------------------------

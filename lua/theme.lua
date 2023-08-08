@@ -13,12 +13,18 @@ function M.setup(theme)
     end
   else
   end
+
+  if vim.fn.has 'gui_running' == 1 then
+    theme = "dayfox"
+  end
+
   vim.g.colors_name = theme
 
   local ok, _ = pcall(vim.cmd, "colorscheme " .. theme)
   if not ok then
     vim.cmd 'colorscheme default'
   end
+
 
   ----[ theme agnostic changes ]------------------------------------------------
   vim.api.nvim_set_hl(0, 'ExtraWhitespace',     { bg = "#aa0000" })
