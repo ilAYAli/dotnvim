@@ -1,6 +1,56 @@
 ---[ let: global ]--------------------------------------------------------------
 local M = {}
 
+local fmt = string.format
+
+local function get_color_from_hl(name)
+  local result = {}
+  for k, v in pairs(vim.api.nvim_get_hl_by_name(name, true)) do
+    result[k] = fmt("#%06x", v)
+  end
+  return result
+end
+
+local function to_rgb(color)
+  return tonumber(color:sub(2, 3), 16), tonumber(color:sub(4, 5), 16), tonumber(color:sub(6), 16)
+end
+
+local function clamp_color(color)
+  return math.max(math.min(color, 255), 0)
+end
+
+-- https://stackoverflow.com/a/13532993
+local function brighten(color, percent)
+  local r, g, b = to_rgb(color)
+  r = clamp_color(math.floor(tonumber(r * (100 + percent) / 100)))
+  g = clamp_color(math.floor(tonumber(g * (100 + percent) / 100)))
+  b = clamp_color(math.floor(tonumber(b * (100 + percent) / 100)))
+
+  return "#" .. fmt("%0x", r) .. fmt("%0x", g) .. fmt("%0x", b)
+end
+
+local function highlight(group, color)
+  local style = color.style and "gui=" .. color.style or "gui=NONE"
+  local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
+  local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
+  local sp = color.sp and "guisp=" .. color.sp or ""
+  local hl = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
+  vim.cmd(hl)
+end
+
+local function gen_hl()
+  local normal = get_color_from_hl("Normal")
+  local darkbg = brighten(normal.background, -10) -- darken by 10%
+
+  local groups = {
+    DarkerBackground = { bg = darkbg },
+  }
+
+  for name, values in pairs(groups) do
+    highlight(name, values)
+  end
+end
+
 function M.setup(theme)
   vim.cmd('hi clear')
 
@@ -15,7 +65,8 @@ function M.setup(theme)
   end
 
   if vim.fn.has 'gui_running' == 1 then
-    theme = "dayfox"
+    --theme = "dayfox"
+    theme = "kanagawa"
   end
 
   vim.g.colors_name = theme
@@ -25,16 +76,9 @@ function M.setup(theme)
     vim.cmd 'colorscheme default'
   end
 
-
-  ----[ theme agnostic changes ]------------------------------------------------
-  vim.api.nvim_set_hl(0, 'ExtraWhitespace',     { bg = "#aa0000" })
-  vim.cmd.match("ExtraWhitespace /\\s\\+\\%#\\@<!$/")
-
-
   ----[ theme specific changes ]------------------------------------------------
   if theme == 'nordfox' then
     vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
-    vim.api.nvim_set_hl(0, 'TelescopeNormal',   { bg = "#151515" })
     vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
     vim.api.nvim_set_hl(0, 'DiagnosticError',   { fg = "#807070" })
     vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
@@ -86,6 +130,32 @@ function M.setup(theme)
     -- neotree
     vim.api.nvim_set_hl(0, 'NeoTreeNormal',           { bg = "#15151a" })
   end
+
+  ----[ theme agnostic changes ]------------------------------------------------
+  vim.api.nvim_set_hl(0, 'ExtraWhitespace',     { bg = "#aa0000" })
+  vim.cmd.match("ExtraWhitespace /\\s\\+\\%#\\@<!$/")
+
+
+  ----[ link highlight groups ]-------------------------------------------------
+  local normal = get_color_from_hl("Normal")
+  local darkbg = brighten(normal.background, -10) -- darken by 10%
+  local lightbg = brighten(normal.background, 150)
+  local groups = {
+    LighterBackground = { bg = lightbg },
+    DarkerBackground = { bg = darkbg },
+  }
+
+  for name, values in pairs(groups) do
+    highlight(name, values)
+  end
+
+
+  vim.api.nvim_set_hl(0, 'SignColumn',      { link = "CursorColumn" })
+  vim.api.nvim_set_hl(0, 'SignColumn',      { link = "LighterBackground" })
+  vim.api.nvim_set_hl(0, 'WinBar',          { link = "LighterBackground" })
+  vim.api.nvim_set_hl(0, "StatusLine",      { link = "WinBar" })
+  vim.api.nvim_set_hl(0, 'TelescopeNormal', { link = "Normal" })
 end
+
 
 return M
