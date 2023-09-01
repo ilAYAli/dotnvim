@@ -84,7 +84,7 @@ return {
   {
     'ilAYAli/scMRU.nvim',
     enabled = function()
-      vim.fn.has('unix')
+      return vim.fn.has('unix')
     end
   },
   { 'kkharji/sqlite.lua' },
