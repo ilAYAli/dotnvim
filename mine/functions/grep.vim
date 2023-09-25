@@ -10,4 +10,3 @@ command! -nargs=* Rg call <sid>Rg(<q-args>)
 command! -nargs=? Tgrep lua require 'telescope.builtin'.grep_string({ search = vim.fn.input("Grep For > "), layout_strategy="vertical",layout_config={width=0.99, height=0.99}})
 
 
-cnoreabbrev rg Rg

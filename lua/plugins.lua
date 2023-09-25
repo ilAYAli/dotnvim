@@ -66,6 +66,17 @@ return {
   { 'neovim/nvim-lspconfig' },
   { "onsails/lspkind-nvim" },
   { "weilbith/nvim-code-action-menu" },
+  { "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  --{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --  config = function()
+  --    require("lsp_lines").setup()
+  --    vim.diagnostic.config({
+  --      virtual_text = false,
+  --    })
+  --  end,
+  --},
   -- { 'jose-elias-alvarez/null-ls.nvim' },
 
 --[ mason ]---------------------------------------------------------------------
@@ -81,13 +92,14 @@ return {
   { dir = '~/.config/nvim/mine/plugins/pastetoggle' },
   { dir = '~/.config/nvim/mine/plugins/namespace' },
 
+  { 'kkharji/sqlite.lua' },
   {
     'ilAYAli/scMRU.nvim',
+    dependencies = 'kkharji/sqlite.lua',
     enabled = function()
       return vim.fn.has('unix')
     end
   },
-  { 'kkharji/sqlite.lua' },
 
 --[ dev ]-----------------------------------------------------------------------
   { 'tpope/vim-fugitive' },
@@ -111,12 +123,12 @@ return {
 
 --[ styling ]-------------------------------------------------------------------
 
-  { -- notifucation popup:
-    'rcarriga/nvim-notify',
-    config = function()
-      vim.notify = require("notify")
-    end
-  },
+  --{ -- notifucation popup:
+  --  'rcarriga/nvim-notify',
+  --  config = function()
+  --    vim.notify = require("notify")
+  --  end
+  --},
 
   {
     'nvim-lualine/lualine.nvim',

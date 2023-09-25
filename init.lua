@@ -31,5 +31,9 @@ require'neovide'
 require'statusline'
 require'theme'.setup()
 
+--vim.diagnostic.config({
+--  virtual_text = false,
+--})
+
 vim.cmd("cabbrev E e")
 vim.cmd("cabbrev Build AsyncRun build")
