@@ -41,14 +41,6 @@ return {
       }
     end
   },
-  { 'p00f/nvim-ts-rainbow' },
-
-  {
-    'nvim-treesitter/playground',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    }
-  },
 
 --[ cmp ]-----------------------------------------------------------------------
   {
@@ -64,20 +56,12 @@ return {
 
 --[ lsp ]-----------------------------------------------------------------------
   { 'neovim/nvim-lspconfig' },
-  { "onsails/lspkind-nvim" },
-  { "weilbith/nvim-code-action-menu" },
+  { "onsails/lspkind-nvim" }, -- vscode like LSP completion pictograms
   { "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
   },
-  --{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --  config = function()
-  --    require("lsp_lines").setup()
-  --    vim.diagnostic.config({
-  --      virtual_text = false,
-  --    })
-  --  end,
-  --},
-  -- { 'jose-elias-alvarez/null-ls.nvim' },
 
 --[ mason ]---------------------------------------------------------------------
   {
@@ -92,7 +76,6 @@ return {
   { dir = '~/.config/nvim/mine/plugins/pastetoggle' },
   { dir = '~/.config/nvim/mine/plugins/namespace' },
 
-  { 'kkharji/sqlite.lua' },
   {
     'ilAYAli/scMRU.nvim',
     dependencies = 'kkharji/sqlite.lua',
@@ -113,23 +96,22 @@ return {
       'nvim-lua/plenary.nvim'
     },
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup {
+        signs = {
+          add          = { text = '+' },
+          change       = { text = '│' },
+          delete       = { text = '-' },
+          topdelete    = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked    = { text = '┆' },
+        },
+      }
     end
   },
   { 'sindrets/diffview.nvim' },
-  { 'mhinz/vim-signify' },
   { 'samoshkin/vim-mergetool' },
-  { 'tikhomirov/vim-glsl' }, -- opengl syntax highlightning:
 
 --[ styling ]-------------------------------------------------------------------
-
-  --{ -- notifucation popup:
-  --  'rcarriga/nvim-notify',
-  --  config = function()
-  --    vim.notify = require("notify")
-  --  end
-  --},
-
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
@@ -140,14 +122,13 @@ return {
     dependencies = 'neovim/nvim-lspconfig'
   },
 
-  { 'norcalli/nvim-colorizer.lua' },
-
 --[ themes ]--------------------------------------------------------------------
   { 'rebelot/kanagawa.nvim' },
   { 'EdenEast/nightfox.nvim' },
   { 'theniceboy/nvim-deus' },
 
 --[ misc ]----------------------------------------------------------------------
+  { 'norcalli/nvim-colorizer.lua' },
   { 'roxma/vim-tmux-clipboard' },
   { 'ojroques/nvim-osc52' },
   --{ 'lewis6991/fileline.nvim' },
@@ -155,18 +136,18 @@ return {
   { 'tpope/vim-abolish' },            -- Subvert
   { 'skywind3000/asyncrun.vim' },
 
-  { 'alexghergh/nvim-tmux-navigation', config = function()
-        local nvim_tmux_nav = require('nvim-tmux-navigation')
-        nvim_tmux_nav.setup {
-            disable_when_zoomed = true -- defaults to false
-        }
-        vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-        vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
-        vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
-        vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-        vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-        vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+  { 'alexghergh/nvim-tmux-navigation',
+    config = function()
+      local nvim_tmux_nav = require('nvim-tmux-navigation')
+      nvim_tmux_nav.setup {
+          disable_when_zoomed = true -- defaults to false
+      }
+      vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+      vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+      vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+      vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+      vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+      vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
     end
   },
-
 }
