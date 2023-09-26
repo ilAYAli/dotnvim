@@ -1,10 +1,12 @@
 local M = {}
 
 function _G.run(arg)
-  f = io.popen(arg .. " 2>/dev/null")
-  local out = f:read('*a')
-  f:close()
-  return out:sub(1, -2)
+  local f = io.popen(arg .. " 2>/dev/null")
+  if f ~= nil then
+    local out = f:read('*a')
+    f:close()
+    return out:sub(1, -2)
+  end
 end
 
 local function is_git_repo()

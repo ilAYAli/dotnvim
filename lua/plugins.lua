@@ -9,35 +9,15 @@ return {
   },
 
 --[ treesitter ]----------------------------------------------------------------
-  {
-    'nvim-treesitter/nvim-treesitter',
+  { 'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup {
         ensure_installed = { "c", "cpp", "python", "lua", "javascript" },
-        -- ensure_installed = "maintained",
+        sync_install = false,
         auto_install = true,
-        ignore_install = { "haskell" },
-        highlight = {
-          enable = true,
-        },
-        refactor = {
-          highlight_definitions = {
-            enable = true
-          },
-          smart_rename = {
-            enable = true,
-            keymaps = {
-              smart_rename = ",r",
-            },
-          },
-        },
-        playground = {
-          enable = false,
-          disable = { "" },
-          updatetime = 25,
-          persist_queries = false
-        }
+        ignore_install = { },
+        highlight = { enable = true, }
       }
     end
   },
