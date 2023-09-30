@@ -94,12 +94,16 @@ return {
 --[ styling ]-------------------------------------------------------------------
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons', lazy = true
+    },
   },
 
   { -- winbar: function:
     'SmiteshP/nvim-navic',
-    dependencies = 'neovim/nvim-lspconfig'
+    dependencies = {
+      'neovim/nvim-lspconfig'
+    }
   },
 
 --[ themes ]--------------------------------------------------------------------
