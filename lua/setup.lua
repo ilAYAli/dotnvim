@@ -22,6 +22,15 @@ require('telescope').setup{
   }
 }
 
+-- use git grep, not ripgrep
+require('telescope.config').values.vimgrep_arguments = {
+  'git',
+  'grep',
+  '--no-color',
+  '--column'
+}
+
+
 local cmp = require('cmp')
 cmp.setup {
   snippet = {
