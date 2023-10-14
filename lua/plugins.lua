@@ -66,10 +66,18 @@ return {
 
 --[ dev ]-----------------------------------------------------------------------
   { 'tpope/vim-fugitive' },
+
   {
-    'TimUntersberger/neogit',
-    dependencies = 'nvim-lua/plenary.nvim'
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',         -- required
+      -- 'nvim-telescope/telescope.nvim',
+      --'sindrets/diffview.nvim',
+      --'ibhagwan/fzf-lua',
+    },
+    config = true
   },
+
   {
     'lewis6991/gitsigns.nvim',
     dependencies = {
