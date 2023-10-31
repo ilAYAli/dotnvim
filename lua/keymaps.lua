@@ -32,7 +32,9 @@ vim.keymap.set('n', '<F1>', ":bp<CR>")
 vim.keymap.set('n', '<F2>', ":bn<CR>")
 
 vim.keymap.set('n', '<F3>', ':Telescope lsp_dynamic_workspace_symbols<CR>')
-vim.keymap.set('n', '<F4>', ':call PasteToggle()<CR>')
+vim.keymap.set('n', '<F4>', function()
+  vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
+end)
 vim.keymap.set('n', '<F10>', ':call highlight#toggle()<CR>')
 vim.keymap.set('n', '<F12>', ':MergetoolToggle<CR>')
 

@@ -53,7 +53,6 @@ return {
 --[ mine ]----------------------------------------------------------------------
   { dir = '~/.config/nvim/mine/plugins/start' },
   { dir = '~/.config/nvim/mine/plugins/highlight' },
-  { dir = '~/.config/nvim/mine/plugins/pastetoggle' },
   { dir = '~/.config/nvim/mine/plugins/namespace' },
 
   {
@@ -66,17 +65,6 @@ return {
 
 --[ dev ]-----------------------------------------------------------------------
   { 'tpope/vim-fugitive' },
-
-  {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',         -- required
-      -- 'nvim-telescope/telescope.nvim',
-      --'sindrets/diffview.nvim',
-      --'ibhagwan/fzf-lua',
-    },
-    config = true
-  },
 
   {
     'lewis6991/gitsigns.nvim',
