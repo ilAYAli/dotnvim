@@ -58,7 +58,8 @@ function M.setup(theme)
     if vim.env['ITERM_PROFILE'] == "Light" then
       theme = "dayfox"
     else
-      theme = 'nordfox'
+      theme = 'duskfox'
+      --theme = 'nordfox'
       --theme = 'kanagawa-dragon'
     end
   else
@@ -150,9 +151,9 @@ function M.setup(theme)
   end
 
 
-  vim.api.nvim_set_hl(0, 'SignColumn',      { link = "CursorColumn" })
-  vim.api.nvim_set_hl(0, 'SignColumn',      { link = "LighterBackground" })
-  vim.api.nvim_set_hl(0, 'WinBar',          { link = "LighterBackground" })
+  --vim.api.nvim_set_hl(0, 'SignColumn',      { link = "CursorColumn" })
+  --vim.api.nvim_set_hl(0, 'SignColumn',      { link = "LighterBackground" })
+  --vim.api.nvim_set_hl(0, 'WinBar',          { link = "LighterBackground" })
   vim.api.nvim_set_hl(0, "StatusLine",      { link = "WinBar" })
   vim.api.nvim_set_hl(0, 'TelescopeNormal', { link = "Normal" })
 end
