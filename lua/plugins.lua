@@ -55,15 +55,17 @@ return {
   { dir = '~/.config/nvim/mine/plugins/highlight' },
   { dir = '~/.config/nvim/mine/plugins/namespace' },
 
-  {
-    'ilAYAli/scMRU.nvim',
-    dependencies = 'kkharji/sqlite.lua',
-    enabled = function()
-      return vim.fn.has('unix')
-    end
-  },
+  --{
+  --  'ilAYAli/scMRU.nvim',
+  --  dependencies = 'kkharji/sqlite.lua',
+  --  enabled = function()
+  --    return vim.fn.has('unix')
+  --  end
+  --},
 
 --[ dev ]-----------------------------------------------------------------------
+  { 'dense-analysis/ale' },
+
   { 'tpope/vim-fugitive' },
 
   {
@@ -103,9 +105,10 @@ return {
   },
 
 --[ themes ]--------------------------------------------------------------------
+  { 'folke/tokyonight.nvim' },
   { 'rebelot/kanagawa.nvim' },
   { 'EdenEast/nightfox.nvim' },
-  { 'theniceboy/nvim-deus' },
+  --{ 'theniceboy/nvim-deus' },
 
 --[ misc ]----------------------------------------------------------------------
   { 'norcalli/nvim-colorizer.lua' },

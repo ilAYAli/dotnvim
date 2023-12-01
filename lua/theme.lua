@@ -58,7 +58,7 @@ function M.setup(theme)
     if vim.env['ITERM_PROFILE'] == "Light" then
       theme = "dayfox"
     else
-      theme = 'duskfox'
+      theme = 'nightfox'
       --theme = 'nordfox'
       --theme = 'kanagawa-dragon'
     end

@@ -133,6 +133,10 @@ local clangd_cmd = {
   "--pch-storage=memory",
 }
 
+--vim.g.ale_linters_ignore = {
+--  "cpp": "eslint",
+--}
+
 require('lspconfig')['clangd'].setup {
   cmd = clangd_cmd,
   capabilities = capabilities,
@@ -178,6 +182,12 @@ require'lspconfig'.lua_ls.setup {
 }
 
 --[ MISC DEV ]------------------------------------------------------------------
+-- 'cc', 'ccls', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'cspell'
+
+vim.g.ale_linters = {
+  cpp = { "clangtidy", "cppcheck" }
+}
+
 --require("indent_blankline").setup {
 --    -- for example, context is off by default, use this to turn it on
 --    show_current_context = true,

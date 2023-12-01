@@ -1,6 +1,6 @@
 
 
-vim.keymap.set('n', 'J', 'gJ') -- join linjes without space
+--vim.keymap.set('n', 'J', 'gJ') -- join linjes without space
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 --vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
 vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end)
@@ -68,8 +68,10 @@ vim.keymap.set('n', '<leader>,', '<c-w>w')
 
 --vim.keymap.set('n', '<leader>ss', ':Telescope live_grep default_text=vim.fn.expand("<cword>")')
 vim.keymap.set('n', '<leader>.', '<esc>:w!<CR>')
-vim.keymap.set('n', '<c-z>', function() require("mru").display_cache({}) end)
-vim.keymap.set('n', '<c-x>', function() require("mru").display_repos({}) end)
+vim.keymap.set('n', '<c-z>', ':Telescope oldfiles<CR>')
+vim.keymap.set('n', '<c-x>', ':Telescope oldfiles<CR>')
+--vim.keymap.set('n', '<c-z>', function() require("mru").display_cache({}) end)
+--vim.keymap.set('n', '<c-x>', function() require("mru").display_repos({}) end)
 --vim.keymap.set('n', '<c-s>', function() require("mru").display_cache({algorithm="mfu"}) end)
 vim.keymap.set('n', '>>', function()
     local ts = require("telescope.builtin")
