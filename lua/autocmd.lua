@@ -75,15 +75,15 @@ autocmd("BufReadPost", {
   end
 })
 
-autocmd("TextYankPost", {
-  group = my_au,
-  pattern = "*",
-  callback = function()
-    if vim.v.event.operator == 'y' == true and vim.v.event.regname == '' then
-      require('osc52').copy_visual()
-    end
-  end
-})
+-- autocmd("TextYankPost", {
+--   group = my_au,
+--   pattern = "*",
+--   callback = function()
+--     if vim.v.event.operator == 'y' == true and vim.v.event.regname == '' then
+--       require('osc52').copy_visual()
+--     end
+--   end
+-- })
 
 autocmd("RecordingEnter", {
   group = my_au,

@@ -6,7 +6,7 @@ vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end)
 vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end)
 vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
-vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end)
+vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end)
 vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end)
 vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end)
 --vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
@@ -29,9 +29,6 @@ end)
 vim.keymap.set({'n', 'x', 'v', 'i'}, '<M-v>', [["+p]])
 vim.keymap.set({'n', 'x', 'v', 'i'}, '<D-v>', '<esc>"+P')
 
-vim.keymap.set('n', '<F1>', ":bp<CR>")
-vim.keymap.set('n', '<F2>', ":bn<CR>")
-
 vim.keymap.set('n', '<F3>', ':Telescope lsp_dynamic_workspace_symbols<CR>')
 vim.keymap.set('n', '<F4>', function()
   vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
@@ -51,10 +48,11 @@ vim.keymap.set('n', '<leader>v', function()
     end
 end)
 -- start disabled:
---vim.api.nvim_feedkeys(",v", "m", true)
 vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
-vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
 vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
+vim.keymap.set('v', '<C-c>', require('osc52').copy_visual)
+vim.keymap.set('v', '<D-c>', require('osc52').copy_visual)
 
 vim.keymap.set('n', '<leader>o', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>')

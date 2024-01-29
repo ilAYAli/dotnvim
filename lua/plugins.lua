@@ -64,7 +64,7 @@ return {
   --},
 
 --[ dev ]-----------------------------------------------------------------------
-  { 'dense-analysis/ale' },
+  -- { 'dense-analysis/ale' },
 
   { 'tpope/vim-fugitive' },
 
@@ -110,8 +110,25 @@ return {
   { 'EdenEast/nightfox.nvim' },
   --{ 'theniceboy/nvim-deus' },
 
+--[ copilot ]-------------------------------------------------------------------
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+
+
 --[ misc ]----------------------------------------------------------------------
-  { 'norcalli/nvim-colorizer.lua' },
+  --{ 'norcalli/nvim-colorizer.lua' },
   { 'roxma/vim-tmux-clipboard' },
   { 'ojroques/nvim-osc52' },
   --{ 'lewis6991/fileline.nvim' },

@@ -58,8 +58,9 @@ function M.setup(theme)
     if vim.env['ITERM_PROFILE'] == "Light" then
       theme = "dayfox"
     else
-      theme = 'nightfox'
-      --theme = 'nordfox'
+      --theme = 'kanagawa'
+      --theme = 'nightfox'
+      theme = 'nordfox'
       --theme = 'kanagawa-dragon'
     end
   else
@@ -79,12 +80,13 @@ function M.setup(theme)
 
   ----[ theme specific changes ]------------------------------------------------
   if theme == 'nordfox' then
-    vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
+    --vim.api.nvim_set_hl(0, 'Normal',            { bg = "#15151a" })
+    vim.api.nvim_set_hl(0, 'Normal',            { bg = "#222222" })
     vim.api.nvim_set_hl(0, 'TSComment',         { bg = "#111111", fg ="#777777" })
     vim.api.nvim_set_hl(0, 'DiagnosticError',   { fg = "#807070" })
     vim.api.nvim_set_hl(0, 'Pmenu',             { bg = "#222244" })
     vim.api.nvim_set_hl(0, 'PmenuSel',          { bg = "#aaaaaa", fg = "#000000" })
-    vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#151515" })
+    vim.api.nvim_set_hl(0, 'SignColumn',        { bg = "#222222" })
     vim.api.nvim_set_hl(0, 'Comment',           { fg = "#8092ac" })
 
     --vim.api.nvim_set_hl(0, 'WinBar',                { bg = "#3b4252", fg = "#dddddd" })
@@ -128,8 +130,11 @@ function M.setup(theme)
     vim.api.nvim_set_hl(0, "NavicSeparator",          {default = true, fg = "#8092ac", bg = "#2e3440"})
     -- bf616a
 
+    -- copilot
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+
     -- neotree
-    vim.api.nvim_set_hl(0, 'NeoTreeNormal',           { bg = "#15151a" })
+    vim.api.nvim_set_hl(0, 'NeoTreeNormal',           { bg = "#222222" })
   end
 
   ----[ theme agnostic changes ]------------------------------------------------
