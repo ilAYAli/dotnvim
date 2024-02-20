@@ -36,4 +36,4 @@ require'theme'.setup()
 --})
 
 vim.cmd("cabbrev E e")
-vim.cmd("cabbrev Build AsyncRun build")
+--vim.cmd("cabbrev Build AsyncRun build")

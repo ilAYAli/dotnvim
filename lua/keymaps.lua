@@ -11,6 +11,9 @@ vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end)
 vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end)
 --vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
 
+--[[ CMDp ]]--------------------------------------------------------------------
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+--vim.keymap.set({ "i", "x", "n", "s" }, "<C-f>", ':Telescope lsp_dynamic_workspace_symbols<CR>')
 
 --[[ nmap ]]--------------------------------------------------------------------
 
@@ -78,7 +81,8 @@ end)
 vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end)
 
 vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.code_action() end)
-vim.keymap.set('n', '<leader>/', function() vim.fn.execute('vnew') end)
+vim.keymap.set('n', '<leader>/', ':Telescope lsp_document_symbols<CR>')
+--vim.keymap.set('n', '<leader>/', ':Telescope lsp_dynamic_workspace_symbols<CR>')
 vim.keymap.set('n', '<leader>-', function() vim.fn.execute('split') end)
 
 -- other:

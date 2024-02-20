@@ -55,7 +55,14 @@ function M.setup(theme)
   vim.cmd('hi clear')
 
   if theme == nil then
-    if vim.env['ITERM_PROFILE'] == "Light" then
+    local handle = io.popen("~/scripts/iterm_profile.sh")
+    local result = handle:read("*a")
+    handle:close()
+    result = result:gsub("%s+", "")
+    --print(string.format("found: '%s'", result))
+
+    --if vim.env['ITERM_PROFILE'] == "Light" then
+    if result == 'Light' then
       theme = "dayfox"
     else
       --theme = 'kanagawa'
