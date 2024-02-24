@@ -19,6 +19,10 @@ require('telescope').setup{
     },
   },
   extensions = {
+    frecency = {
+      hide_current_buffer = true,
+      show_unindexed = true,
+    }
   }
 }
 

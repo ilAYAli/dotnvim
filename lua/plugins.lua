@@ -126,7 +126,6 @@ return {
     end
   },
 
-
 --[ misc ]----------------------------------------------------------------------
   --{ 'norcalli/nvim-colorizer.lua' },
   { 'roxma/vim-tmux-clipboard' },
