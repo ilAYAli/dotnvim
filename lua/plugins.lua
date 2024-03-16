@@ -127,6 +127,7 @@ return {
   },
 
 --[ misc ]----------------------------------------------------------------------
+  { 'ctrlpvim/ctrlp.vim'},
   --{ 'norcalli/nvim-colorizer.lua' },
   { 'roxma/vim-tmux-clipboard' },
   { 'ojroques/nvim-osc52' },

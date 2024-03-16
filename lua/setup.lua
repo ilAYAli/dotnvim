@@ -93,6 +93,7 @@ cmp.setup {
   },
   formatting = {
     format = require("lspkind").cmp_format({
+      mode = "symbol",
       symbol_map = { Copilot = "" },
       menu = ({
         buffer = "[buf]",
