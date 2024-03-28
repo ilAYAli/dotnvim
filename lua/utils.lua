@@ -1,5 +1,37 @@
 local M = {}
 
+local hldict = {}
+local color_idx = 0
+_G.hlword = function()
+  local colors = {
+    'DiffText',
+    'DiffChange',
+    'DiffDelete',
+    'DiffAdd',
+    'DiffText',
+    'DiffChange',
+    'DiffDelete',
+    'DiffAdd',
+    'ModesVisual',
+    'ModesInsert',
+    'ModesDelete',
+    'ModesCopy',
+    'Error'
+  }
+    local word = vim.fn.expand('<cword>')
+    if hldict[word] then
+        vim.fn.matchdelete(hldict[word])
+        hldict[word] = nil
+    else
+        color_idx = (color_idx % #colors) + 1
+        local id = vim.fn.matchadd(colors[color_idx], word)
+        vim.fn.matchaddpos(id, {{vim.fn.line('.'), vim.fn.col('.') - 1}}, 0)
+        hldict[word] = id
+    end
+end
+
+vim.api.nvim_set_keymap('n', '#', ':lua hlword()<CR>', { silent = true })
+
 function _G.run(arg)
   local f = io.popen(arg .. " 2>/dev/null")
   if f ~= nil then
